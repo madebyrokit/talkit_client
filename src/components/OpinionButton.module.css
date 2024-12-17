@@ -1,0 +1,24 @@
+.opinionButton,
+.commentInput,
+.submitButton {
+  height: 40px;
+  box-sizing: border-box;
+}
+
+.opinionButton {
+  width: 3rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.opinionButton.selectedA {
+  background-color: #419bd7;
+  color: white;
+}
+
+.opinionButton.selectedB {
+  background-color: #da7267;
+  color: white;
+}

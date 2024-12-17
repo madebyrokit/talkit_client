@@ -1,0 +1,30 @@
+.main { 
+  width: 70%;
+}
+.header {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content:flex-start;
+  width: 15rem;
+  color: rgb(109, 109, 109);
+}
+
+.profile {
+  margin-right: 1rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: white;
+  overflow: hidden;
+}
+
+.profile_image {
+  object-fit:cover;
+  width: 100%;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+}

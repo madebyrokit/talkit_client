@@ -1,0 +1,56 @@
+.barContainer {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 10rem;
+  height: 3rem;
+  overflow: hidden;
+  flex-direction: row;
+  justify-content:space-between;
+
+}
+.body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+  padding: 1rem;
+}
+
+.barA {
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  border-radius: 1.5rem;
+  transition: width 0.3s ease;
+  background: linear-gradient(to right, #8205ff, #fa0e2a);
+  font-weight: bolder;
+}
+
+.barB {
+  display: flex;
+  align-items: center;
+  border-radius: 1.5rem;
+  padding: 0 1rem;
+  transition: width 0.3s ease;
+  background: linear-gradient(to right, #fae100, #6ce54d);
+  font-weight: bolder;
+}
+
+.chartWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 50px 50px;
+}
+
+.choicesContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 800px;
+  margin: 5px;
+  font-weight: bolder;
+  color: #fff;
+  padding: 10px;
+}

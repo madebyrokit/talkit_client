@@ -1,0 +1,45 @@
+@font-face {
+  font-family: "Ydestreet";
+  src: url("../../assets/Ydestreet_FONT/YdestreetL.ttf");
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50rem;
+  background-color: black;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.body {
+  padding: 1rem;
+  animation: colorChange 3s infinite;
+}
+@keyframes colorChange {
+  0% {
+    color: rgb(214, 185, 178);
+  }
+  50% {
+    color: rgb(228, 245, 195);
+  }
+  100% {
+    color: rgb(214, 185, 178);
+  }
+}
+.body:hover {
+  cursor: pointer;
+  border-radius: 2rem;
+  background-color: rgb(27, 27, 27);
+}

@@ -1,0 +1,39 @@
+.navBar {
+  z-index: 999;
+  font-family: "Ydestreet";
+  background-color: rgb(20, 20, 20);
+  display: flex;
+  position: fixed;
+  justify-content:space-around;
+  align-items:center;
+  width: 100%;
+  height: 5rem;
+  top: 0;
+  left: 0;
+}
+
+.nav_header {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  background: linear-gradient(349deg,
+      rgba(192, 250, 202, 1) 15%,
+      rgba(255, 212, 0, 1) 35%,
+      rgba(233, 115, 141, 1) 55%,
+      rgba(105, 55, 161, 1) 70%);
+  -webkit-background-clip: text;
+  color: transparent;
+  cursor: pointer;
+}
+
+.nav_body {
+  display: flex;
+  flex-direction: row;
+}
+.nav_footer {
+}
+
+.nav_Item {
+  color: white;
+  margin-right: 2vw;
+  cursor: pointer;
+}
