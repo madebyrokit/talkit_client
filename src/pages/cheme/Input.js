@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import CustomButton from "../../components/CustomButton";
 import styles from "./Input.module.css";
 import { useNavigate } from "react-router-dom";
 
@@ -75,7 +76,7 @@ const Input = ({ initialData, satellites }) => {
       return;
     }
 
-    navigate('/result', {
+    navigate('/compatibility/result', {
       state: { savedData, mbtiTexts }
     });
 
@@ -83,16 +84,16 @@ const Input = ({ initialData, satellites }) => {
 
   const renderSavedData = () => {
     return savedData.map((data, dataIndex) => (
-      <div key={dataIndex} className={styles.result_main}>
+      <div key={dataIndex} className={styles.section1}>
 
-        <div className={styles.result_header}>
+        <div className={styles.section1_header}>
           <p>{data.name}</p>
-          <button onClick={() => handleDelete(dataIndex)}>x</button>
+          <button onClick={() => handleDelete(dataIndex)}>지우기</button>
         </div>
 
-        <div className={styles.result_body}>
+        <div className={styles.section1_body}>
           {data.mbti.map((textIndex, rowIndex) => (
-            <span key={rowIndex} className={styles[mbtiTexts[textIndex]]}>
+            <span key={rowIndex}>
               {mbtiTexts[textIndex]}
             </span>
           ))}
@@ -105,22 +106,21 @@ const Input = ({ initialData, satellites }) => {
   return (
     <div className={styles.main}>
 
-      <div className={styles.body}>
-
-        <div className={styles.body_header}>
+      <div className={styles.section}>
+      <p>이름과 MBTI를 입력하여 추가하기를 눌러주세요</p>
+        <div className={styles.section_header}>
           <input
+          className={styles.input_element}
             type="text"
             value={name}
             onChange={handleNameChange}
             placeholder="NAME"
           />
-          <button onClick={handleSave}>ADD</button>
-          <button onClick={handleShowResult}>
-            GO
-          </button>
+          <CustomButton label="추가하기" onClick={handleSave} />
+
         </div>
 
-        <div className={styles.body_body}>
+        <div className={styles.section_body}>
           {mbtiTexts.map((text, textIndex) => (
             <div
               key={textIndex}
@@ -130,6 +130,9 @@ const Input = ({ initialData, satellites }) => {
               {text}
             </div>
           ))}
+        </div>
+        <div className={styles.section_footer}>
+          <CustomButton label="궁합보기" onClick={handleShowResult} />
         </div>
 
         <div >

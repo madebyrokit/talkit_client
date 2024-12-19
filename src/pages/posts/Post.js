@@ -19,12 +19,14 @@ const Post = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/post/${id}`)
+      .get(`http://localhost:8080/post?page=0&size=10&post_id=${id}`)
       .then((response) => {
         setPost(response.data);
         setComments(response.data.commentList);
         console.log("b")
-      })
+      }).catch(
+        console.log("포스트 요청 실패")
+      )
   }, [])
 
   return (
@@ -42,7 +44,7 @@ const Post = () => {
 
       <div className={styles.body}>
         <h3>인기 댓글</h3>
-        <TopComments />
+        <TopComments topCommentA={post.topCommentA} topCommentB={post.topCommentB}/>
         <CommentForm postId={id} comments={comments} setComments={setComments}/>
       </div>
 
@@ -54,7 +56,6 @@ const Post = () => {
         }
         
       </div>
-{console.log("a")}
     </div>
   );
 };

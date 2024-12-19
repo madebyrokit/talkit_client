@@ -1,0 +1,25 @@
+.main {
+    display: flex;
+    justify-content: center;
+}
+.section {
+    border: 1px solid black;
+    margin-top: 6rem;
+    width: 40rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.header {
+    border: 1px red solid;
+}
+
+.body {
+
+    border: 1px blue solid;
+}
+.footer {
+    height: 3rem;
+    border: 1px green solid;
+}

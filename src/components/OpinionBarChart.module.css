@@ -1,56 +1,48 @@
-.barContainer {
+.main {
   display: flex;
-  width: 100%;
-  margin: 0 auto;
-  background-color: white;
-  border-radius: 10rem;
-  height: 3rem;
-  overflow: hidden;
-  flex-direction: row;
-  justify-content:space-between;
-
+  flex-direction: column;
+  align-items: center;
+  margin: 0 50px 50px;
+  width: 40rem;
 }
-.body {
+
+.header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 90%;
-  padding: 1rem;
+  width: 35rem;
+  padding: 0 1rem;
+}
+
+.body {
+  display: flex;
+  width: 40rem;
+  margin: 0.5rem;
+  height: 4rem;
+  border-radius: 10rem;
+  overflow: hidden;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: rgb(243, 243, 243);
 }
 
 .barA {
   display: flex;
   align-items: center;
-  padding: 0 1rem;
-  border-radius: 1.5rem;
+  justify-content: center;
+  padding: 0 2rem;
   transition: width 0.3s ease;
   background: linear-gradient(to right, #8205ff, #fa0e2a);
   font-weight: bolder;
+  
 }
 
 .barB {
   display: flex;
   align-items: center;
-  border-radius: 1.5rem;
-  padding: 0 1rem;
+  justify-content: center;
+  padding: 0 2rem;
   transition: width 0.3s ease;
   background: linear-gradient(to right, #fae100, #6ce54d);
   font-weight: bolder;
-}
-
-.chartWrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 50px 50px;
-}
-
-.choicesContainer {
-  display: flex;
-  justify-content: space-between;
-  width: 800px;
-  margin: 5px;
-  font-weight: bolder;
-  color: #fff;
-  padding: 10px;
 }

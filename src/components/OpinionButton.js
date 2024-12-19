@@ -1,11 +1,7 @@
 import styles from "./OpinionButton.module.css";
 
-const OpinionButton = ({
-    opinion,
-    selectedOpinion,
-    setSelectedOpinion,
-    isLoggedIn,
-  }) => (
+const OpinionButton = ({opinion, selectedOpinion, setSelectedOpinion, isLoggedIn }) => (
+  <div className={styles.main}>
     <button
       className={`${styles.opinionButton} ${selectedOpinion === opinion ? styles[`selected${opinion}`] : ""
         }`}
@@ -14,6 +10,7 @@ const OpinionButton = ({
     >
       {opinion}
     </button>
-  );
+  </div>
+);
 
-  export default OpinionButton;
+export default OpinionButton;

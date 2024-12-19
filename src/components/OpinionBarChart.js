@@ -3,24 +3,23 @@ import { calculatePercentage } from "../utils/calculatePercent";
 import styles from "./OpinionBarChart.module.css";
 
 const OpinionBarChart = ({ optionA, optionB, countByOptionA, countByOptionB }) => {
-  // const { percentageA, percentageB } = calculatePercentage(optionA, optionB);
-
   return (
-    <div className={styles.chartWrapper}>
-      <div className={styles.choicesContainer}>
+    <div className={styles.main}>
+
+      <div className={styles.header}>
+        <span>A.&nbsp;{optionA}</span>
+        <span>B.&nbsp;{optionB}</span>
       </div>
-      <div className={styles.body}><span>A.&nbsp;{optionA};</span>
-        <span>B.&nbsp;{optionB}</span></div>
-      <div className={styles.barContainer}>
-        
-        
-        <div className={styles.barA} style={{ width: `${countByOptionA}%` }}>
-          <span className={styles.percentageText}>{countByOptionA}</span>
+
+      <div className={styles.body}>
+        <div className={styles.barA} style={{ paddingLeft: `${countByOptionA}%` }}>
+          {countByOptionA}
         </div>
-        <div className={styles.barB} style={{ width: `${countByOptionB}%` }}>
-          <span className={styles.percentageText}>{countByOptionB}</span>
+      <div className={styles.barB} style={{ paddingRight: `${countByOptionB}%` }}>
+          {countByOptionB}
         </div>
       </div>
+
     </div>
   );
 };

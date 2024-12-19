@@ -10,7 +10,7 @@ export const handleSubmitPost = async (title, optionA, optionB, setIsModalOpen, 
 
 
     try {
-        const response = await axios.post("http://192.168.31.94:8080/post",
+        const response = await axios.post("http://localhost:8080/post",
             { title: title, optionA: optionA, optionB: optionB },
             {
                 headers: {
@@ -29,7 +29,7 @@ export const handleSubmitPost = async (title, optionA, optionB, setIsModalOpen, 
     }
 };
 
-export const handleSubmitComment = async (postId, content, option, comments, setComments) => {
+export const handleSubmitComment = async (postId, content, option, setComments) => {
     const token = localStorage.getItem("token");
 
     if (!token) {
@@ -38,15 +38,15 @@ export const handleSubmitComment = async (postId, content, option, comments, set
     }
 
     try {
-        const response = await axios.post(`http://192.168.31.94:8080/comment`,
+        const response = await axios.post(`http://localhost:8080/comment`,
             { postId: postId, content: content, option: option }, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
         });
-        console.log("handleSubmitComment response.data",response.data)
+
         setComments((prevComments) => [response.data, ...prevComments]);
-        console.log("원인찾기",comments);
+
     } catch (error) {
         console.error("Error", error);
         alert("댓글 작성에 실패했습니다.");

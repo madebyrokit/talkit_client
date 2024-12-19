@@ -19,14 +19,13 @@ const Result = () => {
         {savedData.map((user, index) => (
           <div
             key={index}
-            className={`${styles.user} ${
-              index === selectedUserIndex ? styles.selected : ""
-            }`}
+            className={`${styles.user} ${index === selectedUserIndex ? styles.selected : ""
+              }`}
             onClick={() => setSelectedUserIndex(index)}
           >
-        
-              {user.name}님 - {renderSelectedImages(user.mbti, index)}
-   
+
+            {user.name}님 - {renderSelectedImages(user.mbti, index)}
+
           </div>
         ))}
       </div>
@@ -72,14 +71,14 @@ const Result = () => {
       const textValue = mbtiTexts[textIndex];
       if (textIndex !== -1 && textValue) {
         return (
-            <span
+          <span
             key={rowIndex}
-              className={`${styles.resultText} ${styles[textValue]}
+            className={`${styles.resultText} ${styles[textValue]}
               ${userIndex === selectedUserIndex ? styles.selected : ""}`}
-              onClick={() => setSelectedUserIndex(userIndex)}
-            >
-              {textValue}
-            </span>
+            onClick={() => setSelectedUserIndex(userIndex)}
+          >
+            {textValue}
+          </span>
         );
       }
       return null;
@@ -87,17 +86,19 @@ const Result = () => {
   };
 
   return (
-    <div className={styles.section}>
-      
+    <div className={styles.main}>
+
+      <div className={styles.section}>
         <div className={styles.header}>
-        <h1>{renderCompatibilityResult()}</h1>
+          <p>{renderCompatibilityResult()}</p>
         </div>
-          
         <div className={styles.body}>
-        {renderUserData()}
-        </div>
+            {renderUserData()}
+            <p>데이터가 정확하지 않을 수 있습니다. 참고용으로만 봐주세요</p>
+          </div>
       </div>
-    
+
+    </div>
   );
 };
 

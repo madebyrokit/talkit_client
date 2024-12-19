@@ -3,7 +3,7 @@ import styles from "./CreateComment.module.css";
 import { handleSubmitComment } from "../../utils/submit.js";
 import { useAuth } from "../../utils/AuthContext.js";
 import OpinionButton from "../../components/OpinionButton.js"
-
+import CustomButton from "../../components/CustomButton.js";
 
 const CommentForm = ({ postId, comments, setComments}) => {
   const [newComment, setNewComment] = useState("");
@@ -30,7 +30,7 @@ const CommentForm = ({ postId, comments, setComments}) => {
 
       <div className={styles.body}>
         <input
-          className={styles.commentInput}
+          className={styles.input_element}
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
           placeholder={isLoggedIn ? "이유를 적어주세요" : "로그인 후에 이용 가능한 기능입니다."}
@@ -38,13 +38,13 @@ const CommentForm = ({ postId, comments, setComments}) => {
       </div>
 
       <div className={styles.footer}>
-        <button onClick={() => {handleSubmitComment(postId, newComment, selectedOpinion,comments, setComments)}} disabled={!isLoggedIn}>
+        <button className={styles.button} onClick={() => {handleSubmitComment(postId, newComment, selectedOpinion, setComments)}} disabled={!isLoggedIn}>
           작성
         </button>
       </div>
 
     </div>
-  );
+);
 };
 
 export default CommentForm;

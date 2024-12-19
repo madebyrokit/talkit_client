@@ -11,7 +11,7 @@ const HomeSection0 = () => {
 
   useEffect(() => {
     axios
-      .get("http://192.168.31.94:8080/post/barchart")
+      .get("http://localhost:8080/post/barchart")
       .then((result) => {
         console.log(result.data);
         setPostList([result.data])})

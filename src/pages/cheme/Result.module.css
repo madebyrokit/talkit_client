@@ -1,26 +1,30 @@
 /* Result.module.css */
 @import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap");
 
-.section {
-  margin-top: 20%;
+.main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px red solid;
+}
+
+.section {
+  margin-top: 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50rem;
+  font-size: 1.5rem;
 }
 
 .header {
-  display: flex;
-  flex-direction: column;
-  border: 1px red solid;
-  align-items: center;
-  justify-content: center;
-  width: 80%;
+  font-weight: bold;
 }
 
 .body{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
 }
 
 @keyframes fadeIn {
@@ -44,27 +48,19 @@
 .I.selected,
 .E.selected {
   color: #e9738d;
-  text-shadow: 0px 0px 5px #ff3399, 0px 0px 30px #ff3399, 0px 0px 40px #ff3399,
-    0px 0px 50px #fff, 0px 0px 6px #ff3399;
 }
 
 .S.selected,
 .N.selected {
   color: #fade85;
-  text-shadow: 0px 0px 5px #ffd400, 0px 0px 30px #ffd400, 0px 0px 40px #ffd400,
-    0px 0px 50px #fff, 0px 0px 6px #ffd400;
 }
 
 .F.selected,
 .T.selected {
   color: #bae1d3;
-  text-shadow: 0px 0px 5px #83dcb7, 0px 0px 30px #83dcb7, 0px 0px 40px #83dcb7,
-    0px 0px 50px #fff, 0px 0px 6px #83dcb7;
 }
 
 .P.selected,
 .J.selected {
   color: #cca9dd;
-  text-shadow: 0px 0px 5px #6937a1, 0px 0px 30px #6937a1, 0px 0px 40px #6937a1,
-    0px 0px 50px #fff, 0px 0px 6px #6937a1;
 }

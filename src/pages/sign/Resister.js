@@ -4,65 +4,29 @@ import styles from "./Resister.module.css";
 import useInput from "../../utils/useInput";
 import axios from "axios";
 import { MBTI_TYPES, validators, errorMessages } from "../../utils/sign";
+import CustomButton from "../../components/CustomButton";
 
 
 function Resister() {
   const navigate = useNavigate();
-  const username = useInput("", validators.id);
-  const password = useInput("", validators.pw);
-  const email = useInput("", validators.email);
-  const [showMbtiSuggestions, setShowMbtiSuggestions] = useState(false);
-  const [birthdate, setBirthdate] = useState(null);
-  const [birthdateInput, setBirthdateInput] = useState("");
-  const [nick, setNick] = useState("");
-  const [term, setTerm] = useState(false);
-  const [notAllow, setNotAllow] = useState(true);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
   const [mbti, setMbti] = useState("");
-  const [showMbtiError, setShowMbtiError] = useState(false);
-  const [mbtiSuggestions, setMbtiSuggestions] = useState([]);
-  const isBirthdateValid = validators.birthdate(birthdate);
+  const [disable, setDisable] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  useEffect(() => {
-    setNotAllow(
-      !(
-        username.isValid &&
-        password.isValid &&
-        email.isValid &&
-        isBirthdateValid &&
-        term
-      )
-    );
-  }, [username.isValid, password.isValid, email.isValid, isBirthdateValid, term]);
-
-  useEffect(() => {
-    setBirthdateInput(birthdate ? birthdate.toISOString().split("T")[0] : "");
-  }, [birthdate]);
-
-  useEffect(() => {
-    setMbtiSuggestions(
-      MBTI_TYPES.filter((type) => type.startsWith(mbti.toUpperCase()))
-    );
-  }, [mbti]);
-  const passwordConfirm = useInput("", (value) =>
-    validators.pwConfirm(password.value, value)
-  );
-
-  const handleSignup = (e) => {
-    e.preventDefault();
-
+  const handleSignup = () => {
     axios
-      .post("http://localhost:8080/members/signup", {
-        email: email.value,
-        password: password.value,
-        username: username.value,
-        nickName: nick,
-        mbti: mbti,
-        birthday: birthdateInput,
+      .post("http://localhost:8080/signup", {
+        email: email,
+        password: password,
+        username: username,
+        mbtiType: mbti,
       })
       .then((response) => {
-        console.log("Signup successful:", response.data);
-        navigate("/login");
+        console.log(response.data);
+        navigate("/");
       })
       .catch((error) => {
         if (error.response && error.response.status === 409) {
@@ -75,153 +39,183 @@ function Resister() {
       });
   };
 
-  function InputField({ label, id, type, value, onChange, validator }) {
-    const isValid = validator(value);
-    return (
-      <div className={styles.form_element}>
-        <label htmlFor={id} className={styles.label}>
-          {label}
-        </label>
-        <div className={styles.inputWithError}>
-          <input
-            id={id}
-            type={type}
-            value={value}
-            className={styles.input}
-            onChange={onChange}
-            required
-          />
-          {!isValid && value.length > 0 && (
-            <span className={styles.errorMessage}>{errorMessages[id]}</span>
-          )}
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className={styles.container}>
-      <div className={styles.modalWrapper}>
-        <form className={styles.form} onSubmit={handleSignup}>
-          <h1 className={styles.signup_title}>회원가입</h1>
-          <InputField
-            label="이메일"
-            id="id"
-            type="text"
-            value={username.value}
-            onChange={username.onChange}
-            validator={validators.id}
-          />
-       
-          <InputField
-            label="닉네임"
-            id="pw"
-            type="password"
-            value={nick}
-            onChange={(e) => setNick(e.target.value)}
-            validator={validators.id}
-          />
-          <InputField
-            label="비밀번호"
-            id="pw"
-            type="password"
-            value={password.value}
-            onChange={password.onChange}
-            validator={validators.pw}
-          />
-          <InputField
-            label="비밀번호 확인"
-            id="pwConfirm"
-            type="password"
-            value={passwordConfirm.value}
-            onChange={passwordConfirm.onChange}
-            validator={() =>
-              validators.pwConfirm(password.value, passwordConfirm.value)
-            }
-          />
+    <div className={styles.main}>
+      <div className={styles.section}>
+        <h2>이용약관</h2>
 
-          <div className={styles.form_element}>
-            <label htmlFor="mbti" className={styles.label}>
-              MBTI
-            </label>
+        <p><strong>제 1조 (목적)</strong>
+          본 약관은 [서비스명] (이하 '서비스')를 제공하는 [회사명] (이하 '회사')와 회원(이하 '회원') 간의 서비스 이용에 관한 권리, 의무 및 책임 사항을 규정하는 것을 목적으로 합니다.</p>
+
+        <p><strong>제 2조 (정의)</strong></p>
+        <ul>
+          <li><strong>회원</strong>: 본 약관에 동의하고 서비스에 가입하여 회사와 이용 계약을 체결한 개인 또는 법인.</li>
+          <li><strong>서비스</strong>: 회사가 제공하는 모든 온라인 서비스 및 관련 서비스.</li>
+          <li><strong>아이디</strong>: 회원 식별을 위한 고유한 문자 또는 숫자의 조합.</li>
+          <li><strong>비밀번호</strong>: 회원의 개인정보 보호를 위해 설정한 비밀번호.</li>
+          <li><strong>회원가입</strong>: 서비스를 이용하기 위해 회원이 본 약관에 동의하고, 필요한 정보를 제공하여 회사와 계약을 체결하는 절차.</li>
+        </ul>
+
+        <p><strong>제 3조 (약관의 효력 및 변경)</strong></p>
+        <ul>
+          <li>본 약관은 회원이 서비스에 가입함으로써 효력을 발생합니다.</li>
+          <li>회사는 본 약관을 변경할 수 있으며, 변경된 약관은 서비스 내 공지사항을 통해 사전 고지합니다. 변경된 약관에 동의하지 않는 경우, 회원은 서비스 이용을 중지하거나 탈퇴할 수 있습니다.</li>
+        </ul>
+
+        <p><strong>제 4조 (회원가입 및 서비스 이용)</strong></p>
+        <ul>
+          <li>회원가입은 이용자가 본 약관에 동의하고, 회사가 요구하는 개인정보를 제공함으로써 이루어집니다.</li>
+          <li>회원가입 시 제공되는 개인정보는 정확하고 최신의 정보이어야 하며, 이를 허위로 기재하거나 변경된 사항을 반영하지 않은 경우, 회사는 서비스 제공을 거부하거나 이용을 제한할 수 있습니다.</li>
+        </ul>
+
+        <p><strong>제 5조 (아이디 및 비밀번호 관리)</strong></p>
+        <ul>
+          <li>회원은 아이디와 비밀번호를 안전하게 관리할 책임이 있습니다.</li>
+          <li>아이디 및 비밀번호의 도용 또는 타인에 의한 부정 사용이 발생한 경우, 회원은 즉시 이를 회사에 통보하고, 회사는 이에 대한 적절한 조치를 취할 수 있습니다.</li>
+        </ul>
+
+        <p><strong>제 6조 (회원의 의무)</strong></p>
+        <ul>
+          <li>회원은 서비스를 이용할 때 다음과 같은 의무를 지켜야 합니다:
+            <ul>
+              <li>법령, 본 약관, 서비스 이용 안내 등을 준수할 것.</li>
+              <li>타인의 권리를 침해하지 않을 것.</li>
+              <li>서비스의 정상적인 운영을 방해하지 않을 것.</li>
+              <li>회사의 사전 승낙 없이 서비스를 상업적으로 이용하지 않을 것.</li>
+            </ul>
+          </li>
+          <li>회원은 본 약관에 위배되는 행위를 할 경우, 회사는 서비스 이용을 제한하거나 계약을 해지할 수 있습니다.</li>
+        </ul>
+
+        <p><strong>제 7조 (서비스 제공)</strong></p>
+        <ul>
+          <li>회사는 회원에게 안정적이고 지속적인 서비스를 제공하기 위해 노력합니다.</li>
+          <li>서비스 제공에 있어 기술적 문제나 외부 요인으로 인한 서비스 중단이나 지연에 대해 회사는 책임지지 않습니다.</li>
+        </ul>
+
+        <p><strong>제 8조 (서비스 이용의 중지)</strong></p>
+        <ul>
+          <li>회사는 다음의 경우 회원에게 사전 통지 없이 서비스 이용을 일시 중지하거나 제한할 수 있습니다:
+            <ul>
+              <li>회원이 본 약관을 위반한 경우.</li>
+              <li>서비스 이용에 있어 부정행위가 발견된 경우.</li>
+              <li>기타 회사가 서비스 운영상 필요하다고 판단한 경우.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <p><strong>제 9조 (개인정보 보호)</strong></p>
+        <ul>
+          <li>회사는 회원의 개인정보를 개인정보 보호법 등 관련 법령에 따라 적법하게 수집, 이용 및 보호합니다. 개인정보의 수집 및 이용에 관한 자세한 사항은 개인정보 처리방침에서 확인할 수 있습니다.</li>
+        </ul>
+
+        <p><strong>제 10조 (서비스 이용 계약 해지)</strong></p>
+        <ul>
+          <li>회원은 언제든지 회사에 서비스 이용 계약 해지를 요청할 수 있습니다.</li>
+          <li>회사는 다음과 같은 경우 회원의 서비스 이용 계약을 해지할 수 있습니다:
+            <ul>
+              <li>회원이 본 약관을 위반한 경우.</li>
+              <li>기타 서비스 운영에 중대한 지장이 있다고 판단되는 경우.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <p><strong>제 11조 (면책 조항)</strong></p>
+        <ul>
+          <li>회사는 회원이 서비스 이용 중 발생한 손해에 대해 책임을 지지 않습니다, 단, 회사의 고의 또는 중대한 과실로 발생한 손해에 대해서는 책임을 집니다.</li>
+          <li>회사는 천재지변 또는 불가항력적인 사유로 인한 서비스 제공의 장애에 대해서 책임지지 않습니다.</li>
+        </ul>
+
+        <p><strong>제 12조 (준거법 및 분쟁 해결)</strong></p>
+        <ul>
+          <li>본 약관의 해석 및 적용에 있어 법적 분쟁이 발생할 경우, 회사의 본점이 위치한 국가의 법을 따릅니다.</li>
+          <li>회사와 회원 간의 분쟁은 회사 본점이 위치한 법원에서 해결합니다.</li>
+        </ul>
+
+      </div>
+
+
+      <div className={styles.section1}>
+
+        <div className={styles.section1_header}>
+          <h1>회원가입</h1>
+        </div>
+
+        <div className={styles.section1_body}>
+          <div>
             <input
-              id="mbti"
-              value={mbti}
-              className={styles.input}
-              onChange={(e) => setMbti(e.target.value.toUpperCase())}
-              onFocus={() => {
-                setShowMbtiSuggestions(true);
-                setShowMbtiError(false);
-              }}
-              onBlur={() => {
-                setTimeout(() => setShowMbtiSuggestions(false), 200);
-                setShowMbtiError(true);
-              }}
+              className={styles.input_element}
+              placeholder="이메일"
+              type="text"
+              value={email}
+              onChange={(e) => { setEmail(e.target.value) }}
+            />
+          </div>
+
+          <div>
+            <input
+              className={styles.input_element}
+              placeholder="닉네임"
+              type="text"
+              value={username}
+              onChange={(e) => { setUsername(e.target.value) }}
+            />
+          </div>
+
+          <div>
+            <input
+              className={styles.input_element}
+              placeholder="비밀번호"
+              type="password"
+              value={password}
+              onChange={(e) => { setPassword(e.target.value) }}
+            />
+          </div>
+
+          <div>
+            <select className={styles.input_element}
+              onChange={(e) => setMbti(e.target.value)} value={mbti} >
+              <option value="">MBTI 선택하기</option>
+              <option value="ISTJ">ISTJ</option>
+              <option value="ISTJ">ISFJ</option>
+              <option value="ISFJ">INFJ</option>
+              <option value="INTJ">INTJ</option>
+              <option value="ISTP">ISTP</option>
+              <option value="ISFP">ISFP</option>
+              <option value="ISFP">INFP</option>
+              <option value="INTP">INTP</option>
+              <option value="ESTP">ESTP</option>
+              <option value="ESFP">ESFP</option>
+              <option value="ENFP">ENFP</option>
+              <option value="ENTP">ENTP</option>
+              <option value="ESTJ">ESTJ</option>
+              <option value="ESFJ">ESFJ</option>
+              <option value="ENFJ">ENFJ</option>
+              <option value="ENTJ">ENTJ</option>
+            </select>
+          </div>
+
+          <div className={styles.section1_footer}>
+
+            <input
+              type="checkbox"
+              name="term"
+            checked={disable}
+              onChange={(e) => setDisable(e.target.checked)}
               required
             />
-            {showMbtiSuggestions && (
-              <div className={styles.autocomplete}>
-                {mbtiSuggestions.map((suggestion, index) => (
-                  <div
-                    key={index}
-                    onClick={() => {
-                      setMbti(suggestion);
-                      setShowMbtiSuggestions(false);
-                    }}
-                  >
-                    {suggestion}
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {showMbtiError && !validators.mbti(mbti) && mbti.length > 0 && (
-              <span className={styles.errorMessage}>{errorMessages.mbti}</span>
-            )}
-          </div>
-          
-
-      
-          <div className={styles.form_element}>
-
-            <div className={styles.errorMessage}>
-              {!isBirthdateValid && birthdate && (
-                <div>{errorMessages.birthdate}</div>
-              )}
+            <span className={styles.red}>(필수)이용약관에 동의합니다.</span>
+            <div>
+              <CustomButton onClick={handleSignup} label="가입하기" />
             </div>
           </div>
-          <div className={styles.checkbox}>
-            <label>
-              <input
-                type="checkbox"
-                name="term"
-                checked={term}
-                onChange={(e) => setTerm(e.target.checked)}
-                required
-              />
-              <span className={styles.black}>만 14세 이상입니다.</span>{" "}
-              <span className={styles.red}>(필수)</span>
-            </label>
-          </div>
-          {errorMessage && (
-            <div className={styles.errorContainer}>
-              <span className={styles.errorMessage}>{errorMessage}</span>
-            </div>
-          )}
-          <button disabled={notAllow} className={styles.signup_button}>
-            가입하기
-          </button>
-        </form>
-        <div className={styles.right}>
-          <h2>이용약관</h2>
-          <p>
-            본 약관은 ... (이하 "회사")이 운영하는 웹 사이트 및 모바일
-            애플리케이션 ... (이하 "서비스")를 이용함에 있어 회사와 이용자의
-            권리, 의무 및 책임사항 등을 규정함을 목적으로 합니다.
-          </p>
+
         </div>
       </div>
-    </div>
+
+
+
+    </div >
   );
 }
 

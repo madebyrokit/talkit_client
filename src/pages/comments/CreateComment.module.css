@@ -1,9 +1,10 @@
 .main {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  width: 50rem; 
+  width: 40rem; 
+
 }
 
 .header {
@@ -17,3 +18,29 @@
   margin: 1rem;
 }
 
+.input_element {
+  margin: 0.1rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  width: 14rem;
+}
+
+.button {
+  padding: 1rem;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  margin: 0.1rem;
+  width: 5rem;
+}
+
+.button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+.button:hover {
+  background-color: #2980b9;
+}
