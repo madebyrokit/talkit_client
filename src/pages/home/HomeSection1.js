@@ -7,7 +7,7 @@ import styles from "./HomeSection1.module.css";
 const HomeSection1 = () => {
   const navigate = useNavigate();
 
-  const handle = () => { navigate('/input') };
+  const handle = () => { navigate('/compatibility') };
   return (
     <div className={styles.main}>
       <div className={styles.header}>

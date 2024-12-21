@@ -10,7 +10,7 @@
 .section {
   margin-top: 7rem;
   text-align: center;
-  width: 25rem;
+  width: 20rem;
   display: flex;
   flex-direction: column;
 }

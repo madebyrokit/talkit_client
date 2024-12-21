@@ -1,6 +1,6 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import styles from "./Mypage.module.css";
+import Myinfor from "./Myinfor";
 
 export const Mypage = () => {
   const menu = [
@@ -14,6 +14,7 @@ export const Mypage = () => {
     <div className={styles.main}>
       <div className={styles.section}>
         <p>마이페이지</p>
+     
       </div>
     </div>
   );

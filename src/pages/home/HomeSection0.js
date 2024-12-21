@@ -7,16 +7,18 @@ import styles from "./HomeSection0.module.css";
 
 const HomeSection0 = () => {
   const navigate = useNavigate();
-  const [postList, setPostList] = useState([]);
+  const [post, setPost] = useState({});
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/post/barchart")
+      .get("http://192.168.31.181:8080/post/barchart")
       .then((result) => {
         console.log(result.data);
-        setPostList([result.data])})
+        setPost(result.data);
+      })
       .catch(() => {
-        alert("차트가 오류났어요😞 잠시 후 다시 시도해주세요.");})
+        alert("차트가 오류났어요😞 잠시 후 다시 시도해주세요.");
+      })
   }, []);
 
   const handler = () => { navigate('/lists'); }
@@ -25,21 +27,19 @@ const HomeSection0 = () => {
     <div className={styles.main}>
 
       <div className={styles.header}>
-        {postList.map((post, i) => (
-          <div>
-            <h2>{post.title}</h2>
-            <OpinionBarChart optionA={post.optionA} optionB={post.optionB}
-              countByOptionA={post.countByOptionA}
-              countByOptionB={post.countByOptionB} />
-          </div>
-        ))}
+
+        <h2>{post.title}</h2>
+        <OpinionBarChart optionA={post.optionA} optionB={post.optionB}
+          countByOptionA={post.countByOptionA}
+          countByOptionB={post.countByOptionB} />
+
       </div>
 
       <div className={styles.body} onClick={handler}>
         <p>토론에 참여해보세요➜</p>
         <p>재미있는 토론이 기다리고 있어요</p>
       </div>
-      
+
     </div>
 
   );

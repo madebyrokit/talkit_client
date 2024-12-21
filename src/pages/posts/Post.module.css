@@ -1,9 +1,11 @@
 .main {
-  margin-top: 5rem;
+}
+.section {
+  margin-top: 6rem;
 }
 
 .header {
-  margin-top: 5rem;
+  margin: 0 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,6 +18,10 @@
   align-items: center;
   justify-content: space-between;
   width: 50rem;
+}
+
+.time {
+  font-size: 0.7rem;
 }
 
 .body {

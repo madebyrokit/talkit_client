@@ -18,7 +18,7 @@ function Resister() {
 
   const handleSignup = () => {
     axios
-      .post("http://localhost:8080/signup", {
+      .post("http://192.168.31.181:8080/signup", {
         email: email,
         password: password,
         username: username,

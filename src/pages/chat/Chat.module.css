@@ -1,25 +1,36 @@
+/* Chat.module.css */
 .main {
-    display: flex;
-    justify-content: center;
+    padding: 20px;
 }
-.section {
-    border: 1px solid black;
-    margin-top: 6rem;
-    width: 40rem;
+
+.messageContainer {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 10px;
 }
 
-.header {
-    border: 1px red solid;
+.myMessage {
+    align-self: flex-end;
+    background-color: #d1f7c4;  /* 내 메시지 배경 색 */
+    padding: 10px;
+    border-radius: 8px;
 }
 
-.body {
+.otherMessage {
+    align-self: flex-start;
+    background-color: #f0f0f0;  /* 상대방 메시지 배경 색 */
+    padding: 10px;
+    border-radius: 8px;
+}
 
-    border: 1px blue solid;
+.nameChangeContainer {
+    margin-bottom: 10px;
 }
-.footer {
-    height: 3rem;
-    border: 1px green solid;
+
+.nameChangeForm {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
 }
+
+

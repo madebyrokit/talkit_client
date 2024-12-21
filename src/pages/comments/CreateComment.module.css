@@ -3,26 +3,33 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  width: 40rem; 
-
+  width: 40rem;
 }
 
 .header {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .body {
-  margin: 1rem;
+  width: 20rem;
+  display: flex;
+  justify-content: center;
+  margin: 0 0.5rem;
+}
+
+
+.footer {
+  display: flex;
+  justify-content: center;
+  width: 5rem;
 }
 
 .input_element {
-  margin: 0.1rem;
   border-radius: 1rem;
   padding: 1rem;
-  width: 14rem;
+  width: 100%;
 }
 
 .button {
@@ -32,8 +39,6 @@
   border: none;
   border-radius: 1rem;
   cursor: pointer;
-  margin: 0.1rem;
-  width: 5rem;
 }
 
 .button:disabled {

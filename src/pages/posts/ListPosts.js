@@ -9,15 +9,14 @@ import { handleLikePost } from "../../utils/submit.js";
 import CreatePost from "./CreatePost.js";
 
 const ListPosts = () => {
-  const [posts, setPosts] = useState([]); // 게시물 데이터
-  
-  const [page, setPage] = useState(0); // 현재 페이지
-  const [hasMore, setHasMore] = useState(true); // 더 이상 로드할 데이터가 있는지 여부
+  const [posts, setPosts] = useState([]);
   const { isLoggedIn } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
   const [selected, setSelected] = useState("last");
+  const [hasMore, setHasMore] = useState(true); // 더 이상 로드할 데이터가 있는지 여부
+  const [page, setPage] = useState(0);
 
   // 마지막 게시물 div를 참조
   const observer = useRef();
@@ -47,7 +46,7 @@ const ListPosts = () => {
     const loadPosts = async () => {
  
       try {
-        const response = await axios.get(`http://localhost:8080/post/list?page=${page}&size=5&sort=${selected}`);
+        const response = await axios.get(`http://192.168.31.181:8080/post/list?page=${page}&size=5&sort=${selected}`);
         setPosts((prevPosts) => [...prevPosts, ...response.data]); // 기존 게시물에 새로운 게시물 추가
         setHasMore(response.data.length > 0); // 추가로 로드할 데이터가 있는지 확인
 
@@ -64,37 +63,41 @@ const ListPosts = () => {
 
   return (
     <div className={styles.main}>
-      <div className={styles.header}>
-        <div>
+
+      <div className={styles.section}>
+        <div className={styles.section_header}>
           <select onChange={handleSelect} value={selected}>
             <option value="last">최신순</option> 
             <option value="view_desc">조회수 ↓</option>
             <option value="comment_desc">댓글 ↓</option>
             <option value="like_desc">좋아요 ↓</option>
           </select>
+          {isLoggedIn ? <div onClick={() => setIsModalOpen((e) => !e)}>✏️</div> : <div />}
         </div>
         <div>
-          <input type="text" placeholder="키워드를 입력해주세요." />
+          <input className={styles.input_element} type="text" placeholder="키워드를 입력해주세요." />
         </div>
-        {isLoggedIn ? <div onClick={() => setIsModalOpen((e) => !e)}>✏️</div> : <div />}
+        
       </div>
+
       {isModalOpen ? <CreatePost setIsModalOpen={setIsModalOpen} setPosts={setPosts} /> : <div />}
-      <div className={styles.body}>
+
+      <div className={styles.section1}>
         {posts.map((data, i) =>
 
         (
           <div
             key={i}
-            className={styles.body_main}
+            className={styles.section1_post}
             ref={posts.length === i + 1 ? lastPostElementRef : null} // 마지막 게시물에 ref 설정
             onClick={() => navigate(`/post/${data.postId}`)}
           >
             <div className={styles.body_header}>
               <UserInfo userImage={data.profileImage} userId={data.username} mbti={data.mbtiType} />
               <div className={styles.body_header_box}>
-                <p>조회{data.view}&nbsp;·&nbsp;</p>
-                <p>댓글{data.countComment}&nbsp;·&nbsp;</p>
-                <p>{format(`${data.createAt}`, 'ko')}</p>
+                <p className={styles.time}>조회{data.view}&nbsp;·&nbsp;</p>
+                <p className={styles.time}>댓글{data.countComment}&nbsp;·&nbsp;</p>
+                <p className={styles.time}>{format(`${data.createAt}`, 'ko')}</p>
               </div>
 
             </div>
@@ -108,7 +111,7 @@ const ListPosts = () => {
               <div
                 className={styles.body_footer_button}
                 onClick={(e) => { e.stopPropagation(); handleLikePost(data.postId, i, posts, setPosts); }}>
-                {data.like}&nbsp;👍
+                👍&nbsp;{data.like}
               </div>
             </div>
           </div>
