@@ -32,7 +32,7 @@ function Login() {
   const handleLogin = (e) => {
     e.preventDefault();
     axios
-      .post("http://192.168.31.181:8080/signin",
+      .post("http://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/signin",
         {
           email: email,
           password: password,
@@ -66,7 +66,7 @@ function Login() {
                 src={naver}
                 className={styles.oauth_image}
                 alt="kakao"
-                onClick={handleKakaoLogin}
+                // onClick={handleKakaoLogin}
               />
 
               <input

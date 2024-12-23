@@ -18,7 +18,7 @@ function Resister() {
 
   const handleSignup = () => {
     axios
-      .post("http://192.168.31.181:8080/signup", {
+      .post("http://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/signup", {
         email: email,
         password: password,
         username: username,

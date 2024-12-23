@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled from './Chat.module.css';
 import { Client } from '@stomp/stompjs';
 import { useInView } from 'react-intersection-observer';
+import axios from 'axios';
 
 const Chat = () => {
     const [client, setClient] = useState(null);  // STOMP 클라이언트 상태
@@ -15,6 +16,14 @@ const Chat = () => {
     const messagesEndRef = useRef(null); // 메시지 끝에 대한 ref
 
     useEffect(() => {
+        axios
+            .get("http://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/chat")
+            .then((result) => {
+                setMessages(result.data);
+            })
+            .catch((error) => {
+                console.error("Error fetching data: ", error);
+            });
         const stompClient = new Client({
             brokerURL: "ws://192.168.31.181:8080/ws",
             connectHeaders: {},
@@ -23,12 +32,6 @@ const Chat = () => {
                 stompClient.subscribe('/topic/message', (messageOutput) => {
                     const receivedMessage = JSON.parse(messageOutput.body);
                     setMessages((prev) => [...prev, receivedMessage])
-                });
-
-                stompClient.subscribe('/topic/join', (messageOutput) => {
-                    const receivedMessage = JSON.parse(messageOutput.body);
-                    console.log("메세지 바디: ", messageOutput.body)
-
                 });
             },
             onWebSocketError: (error) => {
@@ -79,7 +82,7 @@ const Chat = () => {
             messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
         }
     }, [messages]);
-    
+
 
     return (
         <div className={styled.main}>

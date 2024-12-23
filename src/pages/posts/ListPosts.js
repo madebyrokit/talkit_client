@@ -10,10 +10,11 @@ import CreatePost from "./CreatePost.js";
 import { useInView } from 'react-intersection-observer';
 
 const ListPosts = () => {
+  const navigate = useNavigate();
+
   const [posts, setPosts] = useState([]);
   const { isLoggedIn } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const navigate = useNavigate();
 
   const [selected, setSelected] = useState("last");
   const [hasMore, setHasMore] = useState(true); // 더 이상 로드할 데이터가 있는지 여부
@@ -86,11 +87,11 @@ const ListPosts = () => {
           >
             <div className={styles.body_header}>
               <UserInfo userImage={data.profileImage} userId={data.username} mbti={data.mbtiType} />
-              <div className={styles.body_header_box}>
-                <p className={styles.time}>조회{data.view}&nbsp;·&nbsp;</p>
-                <p className={styles.time}>댓글{data.countComment}&nbsp;·&nbsp;</p>
+             
+                <p className={styles.time}>조회{data.view}</p>
+                <p className={styles.time}>댓글{data.countComment}</p>
                 <p className={styles.time}>{format(`${data.createAt}`, 'ko')}</p>
-              </div>
+              
 
             </div>
 

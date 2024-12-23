@@ -18,7 +18,7 @@ const Post = () => {
 
   useEffect(() => {
     axios
-      .get(`http://192.168.31.181:8080/post?postid=${id}`)
+      .get(`http://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/post?postid=${id}`)
       .then((response) => {
         setPost(response.data);
         console.log("post 받아옴")

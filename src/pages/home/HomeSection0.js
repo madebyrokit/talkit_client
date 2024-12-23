@@ -11,7 +11,7 @@ const HomeSection0 = () => {
 
   useEffect(() => {
     axios
-      .get("http://218.155.229.38:8080/post/barchart", { withCredentials: false })
+      .get("http://2ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/post/barchart")
       .then((result) => {
         setPost(result.data);
         setLoading(false);
@@ -28,20 +28,16 @@ const HomeSection0 = () => {
     navigate('/lists');
   };
 
-  if (loading) {
-    return <div>Loading...</div>; // 로딩 중 화면
-  }
-
   return (
     <div className={styles.main}>
       <div className={styles.header}>
         <h2>{post.title}</h2>
-        <OpinionBarChart
+        {loading ? <div>Loading...</div> : <OpinionBarChart
           optionA={post.optionA}
           optionB={post.optionB}
           countByOptionA={post.countByOptionA}
           countByOptionB={post.countByOptionB}
-        />
+        />}
       </div>
 
       <div className={styles.body} onClick={handler}>

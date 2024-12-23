@@ -6,7 +6,6 @@ import { useLocation } from 'react-router-dom';
 const Result = () => {
   const location = useLocation();  // `useLocation` 훅을 사용
   const { savedData, mbtiTexts } = location.state || {};
-  const [sharedLink, setSharedLink] = useState("");
   const [selectedUserIndex, setSelectedUserIndex] = useState(0);
 
   const renderUserData = () => {
@@ -21,7 +20,7 @@ const Result = () => {
             key={index}
             className={`${styles.user} ${index === selectedUserIndex ? styles.selected : ""
               }`}
-            onClick={() => setSelectedUserIndex(index)}
+            onClick={() => {setSelectedUserIndex(0); setSelectedUserIndex(index)}}
           >
 
             {user.name}님 - {renderSelectedImages(user.mbti, index)}

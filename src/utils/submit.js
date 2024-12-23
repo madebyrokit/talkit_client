@@ -10,7 +10,7 @@ export const handleSubmitPost = async (title, optionA, optionB, setIsModalOpen, 
 
 
     try {
-        const response = await axios.post("http://192.168.31.181:8080/post",
+        const response = await axios.post("http://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/post",
             { title: title, optionA: optionA, optionB: optionB },
             {
                 headers: {
@@ -38,7 +38,7 @@ export const handleSubmitComment = async (postId, content, option, setComments) 
     }
 
     try {
-        const response = await axios.post(`http://192.168.31.181:8080/comment`,
+        const response = await axios.post(`http://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/comment`,
             { postId: postId, content: content, option: option }, {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -63,7 +63,7 @@ export const handleLikeComment = async (commentId, index, comments, setComments)
 
     try {
         const response = await axios.post(
-            `http://localhost:8080/comment/like`,
+            `http://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/comment/like`,
             { commentId: commentId },
             {
                 headers: {
@@ -98,7 +98,7 @@ export const handleLikePost = async (postId, index, posts, setPosts) => {
 
     try {
         const response = await axios.post(
-            `http://192.168.31.181:8080/post/like`,
+            `http://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/post/like`,
             { postId: postId },
             {
                 headers: {

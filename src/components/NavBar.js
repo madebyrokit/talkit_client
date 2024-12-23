@@ -21,7 +21,7 @@ const NavBar = () => {
     <nav className={styles.navBar}>
     
         <div className={styles.nav_header} type="button">
-            <span type="button" className={styles.logotext} onClick={homeHandler}>1Talkit</span>
+            <span type="button" className={styles.logotext} onClick={homeHandler}>Talkit</span>
         </div>
 
         <div className={styles.nav_body}>
