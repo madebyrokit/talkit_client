@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/talkit_client/static/css/main.cceefadf.css",
-    "main.js": "/talkit_client/static/js/main.a90da562.js",
+    "main.js": "/talkit_client/static/js/main.e8214b2b.js",
     "static/js/453.f7be5b23.chunk.js": "/talkit_client/static/js/453.f7be5b23.chunk.js",
     "static/media/YdestreetL.ttf": "/talkit_client/static/media/YdestreetL.27ce8e0e1628b57c4c72.ttf",
     "static/media/Chemi.png": "/talkit_client/static/media/Chemi.dacba409348a6347bfde.png",
     "static/media/naver_login.png": "/talkit_client/static/media/naver_login.4382736d0fcc19a758c7.png",
     "index.html": "/talkit_client/index.html",
     "main.cceefadf.css.map": "/talkit_client/static/css/main.cceefadf.css.map",
-    "main.a90da562.js.map": "/talkit_client/static/js/main.a90da562.js.map",
+    "main.e8214b2b.js.map": "/talkit_client/static/js/main.e8214b2b.js.map",
     "453.f7be5b23.chunk.js.map": "/talkit_client/static/js/453.f7be5b23.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.cceefadf.css",
-    "static/js/main.a90da562.js"
+    "static/js/main.e8214b2b.js"
   ]
 }
