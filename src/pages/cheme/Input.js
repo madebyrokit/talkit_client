@@ -114,7 +114,7 @@ const Input = ({ initialData, satellites }) => {
             type="text"
             value={name}
             onChange={handleNameChange}
-            placeholder="NAME"
+            placeholder="이름을 입력하세요."
           />
           <CustomButton label="추가하기" onClick={handleSave} />
 

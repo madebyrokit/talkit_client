@@ -1,28 +1,26 @@
-.main {
-}
+.main {}
 
 .section {
   margin-top: 5rem;
-height: 30rem;
+  height: 30rem;
 }
 
 .section1 {
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 .section1_header {
   text-align: center;
-  margin-top: 3rem;
- 
 }
 
 .section1_body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 0.1rem;
 }
+
 .section1_footer {
   margin-top: 1rem;
   display: flex;
@@ -30,16 +28,14 @@ height: 30rem;
   align-items: center;
   justify-content: flex-end;
 }
+
 .input_element {
-  margin: 0.1rem;
-  border: none;
   border-radius: 1rem;
   padding: 1rem;
   width: 20rem;
 }
 
 .signup_button {
-  
   padding: 1rem;
   background-color: #3498db;
   color: #fff;

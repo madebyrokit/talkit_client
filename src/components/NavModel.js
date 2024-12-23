@@ -16,7 +16,7 @@ const NavModal = ({ setModal, setIsLoggedIn }) => {
         <div className={styled.main}>
             <div className={styled.section}>
                 <div className={styled.header}>
-                    <p>유저</p>
+                    현재 로그인 계정
                 </div>
                 <div className={styled.body}>
                 <p onClick={() => navigate('/mypage')}>마이페이지</p>

@@ -3,17 +3,18 @@ import { useNavigate } from "react-router-dom";
 import styles from "./NavBar.module.css";
 import { useAuth } from "../utils/AuthContext";
 import NavModal from "./NavModel";
-const NavBar = () => {
 
+const NavBar = () => {
   const navigate = useNavigate();
   const { isLoggedIn, setIsLoggedIn } = useAuth();
+  
   const [modal, setModal] = useState(false);
 
   const homeHandler= () =>{navigate('/')}
-
   const handler = ()=>{navigate('/lists');}
   const toInput = ()=>{navigate('/compatibility');}
   const login = ()=>{navigate('/login');}
+
   return (
     <div className={styles.main}>
       {modal ? <NavModal setModal={setModal} setIsLoggedIn={setIsLoggedIn} /> : <div/>}

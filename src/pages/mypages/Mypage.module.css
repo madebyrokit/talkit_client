@@ -1,7 +1,35 @@
 .main {
-
+  display: flex;
+  justify-content: center;
 }
 
 .section {
   margin-top: 6rem;
+  background-color: rgb(238, 238, 238);
+  border-radius: 2rem;
+  width: 30rem;
+}
+
+.header {
+  border: 1px red solid;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.body {
+  border: 1px red solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+  border: 1px red solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

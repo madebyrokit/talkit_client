@@ -56,19 +56,19 @@ function Login() {
         <div className={styles.section}>
           <div>
 
-            <div>
-              <p className={styles.header}>Talkit</p>
+            <div className={styles.header}>
+              <p>Talkit</p>
             </div>
 
             <div className={styles.body} >
-           
-                <img
-                  src={naver}
-                  className={styles.oauth_image}
-                  alt="kakao"
-                  onClick={handleKakaoLogin}
-                />
-          
+
+              <img
+                src={naver}
+                className={styles.oauth_image}
+                alt="kakao"
+                onClick={handleKakaoLogin}
+              />
+
               <input
                 className={styles.input_element}
                 type="text"

@@ -1,36 +1,85 @@
 /* Chat.module.css */
 .main {
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .messageContainer {
+    margin-top: 5rem;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    width: 100%;
+    gap: 1rem;
+   
+    /* 메시지가 위에서부터 쌓이도록 설정 */
+    font-size: 1rem;
+    padding: 2rem 0;
+    /* 메시지에 여백을 추가하여 보기 좋게 만듬 */
+    
+    background-color: rgb(80, 80, 80);
+}
+
+.footer {
+    background-color: none;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.inputelement_name {
+    width: 4rem;
+}
+
+.inputelement {
+    border: none;
+    height: 2rem;
+    min-width: 10rem;
+    flex-grow: 1;
+}
+
+.button_element {
+    border-radius: 0.5rem;
+    border: none;
+    background-color: #3498db;
+    color: white;
+    width: 3rem;
+}
+
+.myMessage,
+.otherMessage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 0.5rem;
+    border-radius: 1rem;
+    word-wrap: break-word;
 }
 
 .myMessage {
     align-self: flex-end;
-    background-color: #d1f7c4;  /* 내 메시지 배경 색 */
-    padding: 10px;
-    border-radius: 8px;
+    background-color: rgb(238, 245, 255);
+    overflow: hidden;
+    min-height: 1.5rem;
+    /* 최소 높이를 설정하여 작은 메시지도 보이도록 */
+    margin-right: 1rem;
 }
 
 .otherMessage {
     align-self: flex-start;
-    background-color: #f0f0f0;  /* 상대방 메시지 배경 색 */
-    padding: 10px;
-    border-radius: 8px;
+    background-color: rgb(255, 255, 255);
+    overflow: hidden;
+    margin-left: 1rem;
+    min-height: 1.5rem;
+    /* 최소 높이 설정 */
 }
 
-.nameChangeContainer {
-    margin-bottom: 10px;
-}
-
-.nameChangeForm {
+.footer_name {
+    justify-content: center;
     display: flex;
-    gap: 10px;
-    margin-top: 10px;
+    flex-direction: row;
 }
-
-

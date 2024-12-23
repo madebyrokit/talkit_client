@@ -17,49 +17,55 @@ function CreatePost({ setIsModalOpen, setPosts }) {
 
   return (
     <div className={styles.main}>
-
-      <div className={styles.header}>
-        <p className={styles.title}>Talkit</p>
-      </div>
-
-      <div className={styles.body}>
-
-        <div>
-          <input
-            type="text"
-            name="title"
-            placeholder="주제"
-            value={requestPost.title}
-            onChange={handleInputChange}
-            className={styles.input}
-          ></input>
+      <div className={styles.containor}>
+        <div className={styles.header}>
+          <p className={styles.title}>Talkit</p>
         </div>
 
-        <div className={styles.formContext}>
-          <input
-            placeholder="A"
-            type="text"
-            name="A"
-            value={requestPost.A}
-            onChange={handleInputChange}
-            className={styles.input}
-          ></input>
+        <div className={styles.body}>
+
+          <div>
+            <input
+              type="text"
+              name="title"
+              placeholder="주제"
+              value={requestPost.title}
+              onChange={handleInputChange}
+              className={styles.inputelement}
+            ></input>
+          </div>
+
+          <div className={styles.formContext}>
+            <input
+              placeholder="A"
+              type="text"
+              name="A"
+              value={requestPost.A}
+              onChange={handleInputChange}
+              className={styles.inputelement}
+            ></input>
+          </div>
+
+          <div className={styles.formContext}>
+            <input
+              placeholder="B"
+              type="text"
+              name="B"
+              value={requestPost.B}
+              onChange={handleInputChange}
+              className={styles.inputelement}
+            ></input>
+          </div>
         </div>
 
-        <div className={styles.formContext}>
-          <input
-            placeholder="B"
-            type="text"
-            name="B"
-            value={requestPost.B}
-            onChange={handleInputChange}
-            className={styles.input}
-          ></input>
+        <div className={styles.footer}>
+          <button
+          className={styles.button_element} 
+          onClick={() => 
+            { handleSubmitPost(requestPost.title, requestPost.A, requestPost.B, setIsModalOpen, setPosts) }}
+          >작성하기</button>
         </div>
-      </div>
 
-      <div className={styles.footer}>
-        <button onClick={() => { handleSubmitPost(requestPost.title, requestPost.A, requestPost.B, setIsModalOpen, setPosts) }}>작성하기</button>
       </div>
 
     </div>
