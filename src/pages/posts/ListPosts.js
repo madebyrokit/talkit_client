@@ -38,7 +38,7 @@ const ListPosts = () => {
       if (!hasMore) return; // 더 이상 로드할 데이터가 없다면 요청하지 않음
 
       try {
-        const response = await axios.get(`http://192.168.31.181:8080/post/list?page=${page}&size=5&sort=${selected}`);
+        const response = await axios.get(`http://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/post/list?page=${page}&size=5&sort=${selected}`);
         setPosts((prevPosts) => [...prevPosts, ...response.data]); // 기존 게시물에 새로운 게시물 추가
         setHasMore(response.data.length > 0); // 추가로 로드할 데이터가 있는지 확인
         setPage(prevPage => prevPage + 1); // 페이지 증가

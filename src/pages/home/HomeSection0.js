@@ -18,7 +18,6 @@ const HomeSection0 = () => {
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);
-        alert("차트가 오류났어요😞 잠시 후 다시 시도해주세요.");
         setLoading(false);
       });
   }, []);
