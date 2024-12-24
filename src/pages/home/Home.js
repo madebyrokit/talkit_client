@@ -1,4 +1,3 @@
-// Home.js
 import React from "react";
 import HomeSection0 from "./HomeSection0";
 import HomeSection1 from "./HomeSection1";

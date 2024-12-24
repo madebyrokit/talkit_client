@@ -4,16 +4,12 @@ import axios from "axios";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(
-    !!localStorage.getItem("token")
-  );
-  const [user, setUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
+  const [user, setUser] = useState({});
 
   const isTokenExpired = (token) => {
     try {
       const payload = JSON.parse(atob(token.split(".")[1]));
-      const userId = payload.userId;
-      setUser({ ...user, userId });
       const currentTime = Date.now() / 1000;
       return currentTime > payload.exp;
     } catch (e) {
@@ -23,22 +19,22 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const checkTokenValidity = async () => {
-      const token = sessionStorage.getItem("token");
+      const token = localStorage.getItem("token");
       if (token && isTokenExpired(token)) {
-        console.log("Token is expired");
+        console.log("토큰 만료됨");
         setIsLoggedIn(false);
         setUser(null);
         localStorage.removeItem("token");
       } else if (token) {
         try {
-          const response = await axios.get("/mypage", {
+          const response = await axios.get("http://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/member/info", {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           });
           setUser(response.data);
         } catch (error) {
-          console.error("Error fetching user data", error);
+          console.error("유저 컨텍스트 에러", error);
         }
       }
     };

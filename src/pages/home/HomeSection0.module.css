@@ -15,31 +15,73 @@
   font-size: 1.5rem;
 }
 
-.header {
+.body {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 40rem;
   flex-direction: column;
+  color: white;
 }
 
-.body {
+.footer {
   padding: 1rem;
-  animation: colorChange 3s infinite;
+  animation: colorChange 3s infinite, pulse 1.5s infinite;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid transparent;
+  background: none;
+  background-size: 300% 300%;
+  border-radius: 1rem;
 }
+
 @keyframes colorChange {
   0% {
-    color: rgb(214, 185, 178);
+    color: rgb(161, 161, 161);
   }
   50% {
-    color: rgb(228, 245, 195);
+    color: rgb(249, 249, 249);
   }
   100% {
-    color: rgb(214, 185, 178);
+    color: rgb(161, 161, 161);
   }
 }
-.body:hover {
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  }
+}
+
+.footer:hover {
   cursor: pointer;
   border-radius: 2rem;
-  background-color: rgb(27, 27, 27);
+  background: linear-gradient(90deg, #ff477e, #47b9ff, #ffd700);
+  background-size: 400% 400%;
+  animation: hoverEffect 2s infinite;
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 200, 200, 0.5);
+}
+
+@keyframes hoverEffect {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

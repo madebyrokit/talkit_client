@@ -11,14 +11,14 @@ const HomeSection0 = () => {
 
   useEffect(() => {
     axios
-      .get("http://2ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/post/barchart")
+      .get("http://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/post/barchart")
       .then((result) => {
         setPost(result.data);
         setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);
-        setLoading(false);
+        setLoading(true);
       });
   }, []);
 
@@ -31,6 +31,9 @@ const HomeSection0 = () => {
     <div className={styles.main}>
       <div className={styles.header}>
         <h2>{post.title}</h2>
+      </div>
+
+      <div className={styles.body}>
         {loading ? <div>Loading...</div> : <OpinionBarChart
           optionA={post.optionA}
           optionB={post.optionB}
@@ -39,7 +42,7 @@ const HomeSection0 = () => {
         />}
       </div>
 
-      <div className={styles.body} onClick={handler}>
+      <div className={styles.footer} onClick={handler}>
         <p>토론에 참여해보세요➜</p>
         <p>재미있는 토론이 기다리고 있어요</p>
       </div>

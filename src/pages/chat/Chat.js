@@ -25,7 +25,7 @@ const Chat = () => {
                 console.error("Error fetching data: ", error);
             });
         const stompClient = new Client({
-            brokerURL: "ws://192.168.31.181:8080/ws",
+            brokerURL: "ws://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/ws",
             connectHeaders: {},
             debug: (str) => { }, // 디버그 메시지 출력
             onConnect: () => {
@@ -120,7 +120,7 @@ const Chat = () => {
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="메세지를 입력하세요."
                 />
-                <button className={styled.button_element} id="chat" type="submit">전송</button>
+                <button className={styled.button_element} id="chat" type="submit">&nbsp;</button>
             </form>
 
 

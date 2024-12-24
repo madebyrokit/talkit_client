@@ -107,7 +107,7 @@ const Input = ({ initialData, satellites }) => {
     <div className={styles.main}>
 
       <div className={styles.section}>
-      <p>이름과 MBTI를 입력하여 추가하기를 눌러주세요</p>
+      <p>이름과 MBTI를 입력하여 추가 버튼을 눌러주세요</p>
         <div className={styles.section_header}>
           <input
           className={styles.input_element}
@@ -116,7 +116,7 @@ const Input = ({ initialData, satellites }) => {
             onChange={handleNameChange}
             placeholder="이름을 입력하세요."
           />
-          <CustomButton label="추가하기" onClick={handleSave} />
+          <CustomButton label="추가" onClick={handleSave} />
 
         </div>
 

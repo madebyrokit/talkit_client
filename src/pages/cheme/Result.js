@@ -20,7 +20,7 @@ const Result = () => {
             key={index}
             className={`${styles.user} ${index === selectedUserIndex ? styles.selected : ""
               }`}
-            onClick={() => {setSelectedUserIndex(0); setSelectedUserIndex(index)}}
+            onClick={() => { setSelectedUserIndex(0); setSelectedUserIndex(index) }}
           >
 
             {user.name}님 - {renderSelectedImages(user.mbti, index)}
@@ -88,14 +88,15 @@ const Result = () => {
     <div className={styles.main}>
 
       <div className={styles.section}>
-      <p className={styles.notice}>데이터가 정확하지 않을 수 있습니다. 참고용으로만 봐주세요</p>
+
         <div className={styles.header}>
+          <p className={styles.notice}>데이터가 정확하지 않을 수 있습니다. 참고용으로만 봐주세요</p>
           <p>{renderCompatibilityResult()}</p>
         </div>
         <div className={styles.body}>
-            {renderUserData()}
-            
-          </div>
+          {renderUserData()}
+
+        </div>
       </div>
 
     </div>

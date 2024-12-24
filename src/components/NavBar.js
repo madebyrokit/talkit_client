@@ -11,9 +11,20 @@ const NavBar = () => {
   const [modal, setModal] = useState(false);
 
   const homeHandler= () =>{navigate('/')}
-  const handler = ()=>{navigate('/lists');}
-  const toInput = ()=>{navigate('/compatibility');}
-  const login = ()=>{navigate('/login');}
+  const handler = ()=>{
+    navigate('/lists');
+    setModal(false);
+  }
+
+  const toInput = ()=>{
+    navigate('/compatibility');
+    setModal(false);
+  }
+
+  const login = ()=>{
+    navigate('/login');
+    setModal(false);
+  }
 
   return (
     <div className={styles.main}>
@@ -27,7 +38,7 @@ const NavBar = () => {
         <div className={styles.nav_body}>
         <div className={styles.nav_Item} onClick={handler}>토론</div>
         <div className={styles.nav_Item} onClick={toInput}>케미</div>
-        <div className={styles.nav_Item} onClick={() => {navigate('/chat')}}>채팅</div>
+        <div className={styles.nav_Item} onClick={() => {navigate('/chat'); setModal(false)}}>채팅</div>
         </div>
         
         

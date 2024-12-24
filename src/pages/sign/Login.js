@@ -19,6 +19,8 @@ function Login() {
   const REDIRECT_URI = "http://localhost:3000/auth/kakao/callback";
   const KAKAO_LOGIN_URL = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`;
 
+  const [errmsg, setErrmsg] = useState(false);
+
   const handleKakaoLogin = () => {
     window.location.href = KAKAO_LOGIN_URL;
   };
@@ -47,6 +49,7 @@ function Login() {
       })
       .catch((error) => {
         console.error("로그인 요청 실패:", error);
+        setErrmsg(true);
       });
   };
 
@@ -57,7 +60,8 @@ function Login() {
           <div>
 
             <div className={styles.header}>
-              <p>Talkit</p>
+              
+              {errmsg ? <div>아이디 혹은 비밀번호가 다릅니다.</div> : <p>Talkit</p>}
             </div>
 
             <div className={styles.body} >

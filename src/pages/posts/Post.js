@@ -32,7 +32,7 @@ const Post = () => {
       <div className={styles.section}>
         <div className={styles.header}>
           <div className={styles.header_profile}>
-            <UserInfo userImage={post.profileImage} userId={post.username} mbti={post.mbti} />
+            <UserInfo userImage={post.profileImage} userId={post.username} mbti={post.mbtiType} />
             <span className={styles.time}>조회수&nbsp;{post.view}&nbsp;·&nbsp; {format(`${post.createAt}`, 'ko')} </span>
           </div>
 
@@ -47,7 +47,9 @@ const Post = () => {
 
         <div className={styles.footer}>
           <p>모든 댓글</p>
-          {post.countComment == 0 ? <div>아직 댓글이 없습니다😞</div> : <Comments id={id} />}
+          <Comments id={id} />
+
+          {post.countComment == 0 ? <div>아직 댓글이 없습니다😞</div> : <div></div>}
         </div>
       </div>
     </div>

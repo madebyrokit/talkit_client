@@ -3,7 +3,6 @@ import styles from "./CreateComment.module.css";
 import { handleSubmitComment } from "../../utils/submit.js";
 import { useAuth } from "../../utils/AuthContext.js";
 import OpinionButton from "../../components/OpinionButton.js"
-import CustomButton from "../../components/CustomButton.js";
 
 const CreateComment = ({ postId, setCommentList }) => {
   const [newComment, setNewComment] = useState("");

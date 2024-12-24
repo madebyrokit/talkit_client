@@ -64,8 +64,8 @@
 
 .inputelement {
     border: none;
-    min-width: 10rem;
-    flex-grow: 1;
+    width: 15rem;
+
     border-radius: 0.5rem;
     padding: 0.5rem 1rem;
     font-size: 1rem;
@@ -81,11 +81,12 @@
 }
 
 .button_element {
-    border-radius: 1rem;
+    border-radius: 0.5rem;
+    width: 2rem;
+    height: 2rem;
     border: none;
     background: linear-gradient(135deg, #6dd5ed, #3498db);
     color: white;
-    height: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;

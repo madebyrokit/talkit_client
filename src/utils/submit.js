@@ -98,7 +98,7 @@ export const handleLikePost = async (postId, index, posts, setPosts) => {
 
     try {
         const response = await axios.post(
-            `http://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/post/like`,
+            `http://localhost:8080/post/like`,
             { postId: postId },
             {
                 headers: {

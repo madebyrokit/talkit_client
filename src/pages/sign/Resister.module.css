@@ -1,8 +1,17 @@
-.main {}
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
 
 .section {
   margin-top: 5rem;
   height: 30rem;
+}
+
+.a {
+  text-align: center;
 }
 
 .section1 {

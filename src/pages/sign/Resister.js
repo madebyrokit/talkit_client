@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Resister.module.css";
-import useInput from "../../utils/useInput";
 import axios from "axios";
-import { MBTI_TYPES, validators, errorMessages } from "../../utils/sign";
 import CustomButton from "../../components/CustomButton";
-
 
 function Resister() {
   const navigate = useNavigate();
@@ -13,15 +10,42 @@ function Resister() {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [mbti, setMbti] = useState("");
-  const [disable, setDisable] = useState(false);
+  const [isAgreed, setIsAgreed] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validateInputs = () => {
+    if (!email || !validateEmail(email)) {
+      setErrorMessage("유효한 이메일 주소를 입력해주세요.");
+      return false;
+    }
+    if (username.length > 8) {
+      setErrorMessage("닉네임은 최대 8자리까지 입력 가능합니다.");
+      return false;
+    }
+    if (password.length > 12) {
+      setErrorMessage("비밀번호는 최대 12자리까지 입력 가능합니다.");
+      return false;
+    }
+    if (!mbti) {
+      setErrorMessage("MBTI를 선택해주세요.");
+      return false;
+    }
+    return true;
+  };
+
   const handleSignup = () => {
+    if (!validateInputs()) return;
+
     axios
       .post("http://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/signup", {
-        email: email,
-        password: password,
-        username: username,
+        email,
+        password,
+        username,
         mbtiType: mbti,
       })
       .then((response) => {
@@ -30,9 +54,7 @@ function Resister() {
       })
       .catch((error) => {
         if (error.response && error.response.status === 409) {
-          setErrorMessage(
-            "이미 존재하는 아이디입니다. 다른 아이디를 선택해주세요."
-          );
+          setErrorMessage("이미 존재하는 아이디입니다. 다른 아이디를 선택해주세요.");
         } else {
           setErrorMessage("회원가입에 실패했습니다. 다시 시도해주세요.");
         }
@@ -131,58 +153,73 @@ function Resister() {
           <li>본 약관의 해석 및 적용에 있어 법적 분쟁이 발생할 경우, 회사의 본점이 위치한 국가의 법을 따릅니다.</li>
           <li>회사와 회원 간의 분쟁은 회사 본점이 위치한 법원에서 해결합니다.</li>
         </ul>
-
       </div>
 
+      <div className={styles.a}>
+        <input
+          type="checkbox"
+          name="term"
+          checked={isAgreed}
+          onChange={(e) => setIsAgreed(e.target.checked)}
+          required
+        />
+        <span className={styles.red}>(필수)이용약관에 동의합니다.</span>
+      </div>
 
       <div className={styles.section1}>
-
         <div className={styles.section1_header}>
           <h1>회원가입</h1>
         </div>
 
         <div className={styles.section1_body}>
+          {errorMessage && <p className={styles.error}>{errorMessage}</p>}
+
           <div>
             <input
               className={styles.input_element}
               placeholder="이메일"
               type="text"
               value={email}
-              onChange={(e) => { setEmail(e.target.value) }}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
           <div>
             <input
               className={styles.input_element}
-              placeholder="닉네임"
+              placeholder="닉네임 (최대 8자리)"
               type="text"
+              maxLength="8"
               value={username}
-              onChange={(e) => { setUsername(e.target.value) }}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
 
           <div>
             <input
               className={styles.input_element}
-              placeholder="비밀번호"
+              placeholder="비밀번호 (최대 12자리)"
               type="password"
+              maxLength="12"
               value={password}
-              onChange={(e) => { setPassword(e.target.value) }}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
           <div>
-            <select className={styles.input_element}
-              onChange={(e) => setMbti(e.target.value)} value={mbti} >
+            <select
+              className={styles.input_element}
+              onChange={(e) => setMbti(e.target.value)}
+              value={mbti}
+            >
               <option value="">MBTI 선택하기</option>
               <option value="ISTJ">ISTJ</option>
-              <option value="ISTJ">ISFJ</option>
-              <option value="ISFJ">INFJ</option>
+              <option value="ISFJ">ISFJ</option>
+              <option value="INFJ">INFJ</option>
               <option value="INTJ">INTJ</option>
               <option value="ISTP">ISTP</option>
               <option value="ISFP">ISFP</option>
-              <option value="ISFP">INFP</option>
+              <option value="INFP">INFP</option>
               <option value="INTP">INTP</option>
               <option value="ESTP">ESTP</option>
               <option value="ESFP">ESFP</option>
@@ -196,26 +233,17 @@ function Resister() {
           </div>
 
           <div className={styles.section1_footer}>
-
-            <input
-              type="checkbox"
-              name="term"
-            checked={disable}
-              onChange={(e) => setDisable(e.target.checked)}
-              required
-            />
-            <span className={styles.red}>(필수)이용약관에 동의합니다.</span>
             <div>
-              <CustomButton onClick={handleSignup} label="가입하기" />
+              <CustomButton
+                onClick={handleSignup}
+                label="가입하기"
+                disable={!isAgreed}
+              />
             </div>
           </div>
-
         </div>
       </div>
-
-
-
-    </div >
+    </div>
   );
 }
 
