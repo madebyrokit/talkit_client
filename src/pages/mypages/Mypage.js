@@ -28,7 +28,7 @@ export const Mypage = () => {
         
         <div className={styles.header}>
           <UserInfo userImage={user.profileImage} userId={user.username} mbti={user.mbtiType} />
-          <p>계정 관리</p>
+          <p onClick={() => navigate('/account')} >계정 관리</p>
         </div>
         <div className={styles.body}>
         <p>내가 쓴 글(준비중)</p>

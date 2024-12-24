@@ -39,7 +39,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-"homepage": "http://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080",
+
   "eslintConfig": {
     "extends": [
       "react-app",

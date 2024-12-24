@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const handleSubmitPost = async (title, optionA, optionB, setIsModalOpen, setPosts) => {
+export const handleSubmitPost = async (title, opinionA, opinionB, setIsModalOpen, setPosts) => {
     const token = localStorage.getItem("token");
 
     if (!token) {
@@ -11,7 +11,7 @@ export const handleSubmitPost = async (title, optionA, optionB, setIsModalOpen, 
 
     try {
         const response = await axios.post("http://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/post",
-            { title: title, optionA: optionA, optionB: optionB },
+            { title: title, optionA: opinionA, optionB: opinionB },
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -20,7 +20,7 @@ export const handleSubmitPost = async (title, optionA, optionB, setIsModalOpen, 
         setIsModalOpen(false);
         console.log(response.data);
         setPosts((prevPosts) => {
-            return [response.data, ...prevPosts];  // 기존 배열에 newPost 추가
+            return [response.data, ...prevPosts]; 
         });
 
     } catch (error) {
@@ -98,7 +98,7 @@ export const handleLikePost = async (postId, index, posts, setPosts) => {
 
     try {
         const response = await axios.post(
-            `http://localhost:8080/post/like`,
+            `http://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/post/like`,
             { postId: postId },
             {
                 headers: {

@@ -42,3 +42,8 @@
   cursor: pointer;
   font-weight: bold;
 }
+
+.button_element:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}

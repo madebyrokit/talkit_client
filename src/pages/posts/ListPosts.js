@@ -36,7 +36,7 @@ const ListPosts = () => {
 
     const loadPosts = async () => {
       try {
-        const response = await axios.get(`http://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080post/list?page=${page}&size=10&sort=${selected}`);
+        const response = await axios.get(`http://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/post/list?page=${page}&size=10&sort=${selected}`);
         setPosts((prevPosts) => [...prevPosts, ...response.data]);
         setHasMore(response.data.length > 0);
         setPage((e) => e + 1);
