@@ -1,0 +1,148 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f3f3f3;
+  min-height: 100vh;
+}
+
+.section {
+  margin-top: 6rem;
+  text-align: center;
+  width: 100%;
+  max-width: 25rem;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.notice {
+  font-size: 0.75rem;
+  color: #888;
+  margin-bottom: 1rem;
+}
+
+.header {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.userData {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user {
+  padding: 0.8rem 1rem;
+  background: #eaeaea;
+  border-radius: 0.8rem;
+  width: 80%;
+  transition: background-color 0.3s, transform 0.2s;
+  cursor: pointer;
+}
+
+.user:hover {
+  background-color: #f3f3f3;
+  transform: scale(1.05);
+}
+
+.selected {
+  background-color: #ffeff9;
+}
+
+.compatibilityResult {
+  background-color: #f1f6ff;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.compatibilityResult p {
+  font-size: 1rem;
+  color: #333;
+}
+
+.resultText {
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  margin: 0.5rem;
+}
+
+.resultText:hover {
+  transform: scale(1.2);
+}
+
+.I.selected,
+.E.selected {
+  color: #ff80f3;
+}
+
+.S.selected,
+.N.selected {
+  color: #fade85;
+}
+
+.F.selected,
+.T.selected {
+  color: #bae1d3;
+}
+
+.P.selected,
+.J.selected {
+  color: #c886ff;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .header {
+    font-size: 1rem;
+  }
+
+  .resultText {
+    font-size: 1.5rem;
+  }
+
+  .user {
+    width: 90%;
+    font-size: 1rem;
+  }
+
+  .notice {
+    font-size: 0.6rem;
+  }
+
+  .compatibilityResult p {
+    font-size: 0.9rem;
+  }
+}

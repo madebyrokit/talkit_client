@@ -1,0 +1,250 @@
+/* .main {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section {
+  margin-top: 7rem;
+  text-align: center;
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  background-color: #f3f3f3;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.section_header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input_element {
+  border-radius: 1rem;
+  padding: 1rem;
+  width: 10rem;
+}
+.section_body {
+  font-size: 5rem;
+  font-weight: bold;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  cursor: pointer;
+}
+.section_footer {
+
+}
+
+.section1 {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgb(235, 235, 235);
+}
+.section1_header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.section1_body {
+  display: flex;
+  flex-direction: row;
+}
+
+.I.selected,
+.E.selected {
+  color: #ff80f3;
+}
+
+.S.selected,
+.N.selected {
+  color: #fade85;
+}
+
+.F.selected,
+.T.selected {
+  color: #bae1d3;
+}
+.P.selected,
+.J.selected {
+  color: #c886ff;
+} */
+.main {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, #ffffff, #e3f2fd); /* 은은한 그라디언트 추가 */
+  min-height: 100vh;
+}
+
+.section {
+  margin-top: 6rem;
+  text-align: center;
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  padding: 1.5rem; /* 조금 더 여유 있는 패딩 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 추가 */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.section_header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.input_element {
+  border-radius: 1rem;
+  padding: 0.8rem;
+  width: 12rem; /* 약간 더 큰 입력 필드 */
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 약간의 그림자 추가 */
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.input_element:focus {
+  box-shadow: 0 4px 8px rgba(52, 152, 219, 0.2);
+  border-color: #3498db;
+  outline: none;
+}
+.section_body {
+  font-size: 1.2rem; /* 텍스트 크기 조정 */
+  font-weight: bold;
+  display: grid;
+  overflow-y: hidden;
+  min-height: 30rem;
+  grid-template-columns: repeat(2, 1fr); /* 한 줄에 2개의 아이템 */
+  gap: 1rem; /* 아이템 간 간격 */
+  justify-items: center; /* 각 아이템을 가로로 가운데 정렬 */
+  align-items: center; /* 각 아이템을 세로로 가운데 정렬 */
+  cursor: pointer;
+}
+
+.section_body div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  background: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.section_body div:hover {
+  transform: scale(1.1);
+  background-color: #e0f7fa;
+}
+
+
+.section_footer {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.section_footer button {
+  padding: 0.8rem 2rem;
+  border-radius: 1rem;
+  border: none;
+  background-color: #3498db;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.section_footer button:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+.section1 {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgb(235, 235, 235);
+  padding-top: 1rem;
+}
+
+.section1_header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.section1_header p {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #333;
+}
+
+.section1_header button {
+  background: #e74c3c;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.section1_header button:hover {
+  background: #c0392b;
+}
+
+.section1_body {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.I.selected,
+.E.selected {
+  color: #ff80f3;
+  font-size: 1.5rem; /* 선택된 항목 강조 */
+  transition: transform 0.2s ease, color 0.2s ease;
+  transform: scale(1.1);
+}
+
+.S.selected,
+.N.selected {
+  color: #fade85;
+  font-size: 1.5rem;
+  transform: scale(1.1);
+}
+
+.F.selected,
+.T.selected {
+  color: #bae1d3;
+  font-size: 1.5rem;
+  transform: scale(1.1);
+}
+
+.P.selected,
+.J.selected {
+  color: #c886ff;
+  font-size: 1.5rem;
+  transform: scale(1.1);
+}

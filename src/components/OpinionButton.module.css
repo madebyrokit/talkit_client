@@ -1,0 +1,24 @@
+.main {
+
+}
+
+
+.opinionButton {
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 3rem;
+  height: 3rem;
+  font-weight: bold;
+}
+
+.opinionButton.selectedA {
+  background-color: #419bd7;
+  color: white;
+}
+
+.opinionButton.selectedB {
+  background-color: #da7267;
+  color: white;
+}

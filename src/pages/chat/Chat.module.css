@@ -1,0 +1,141 @@
+/* Chat.module.css */
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background-image: radial-gradient(circle at top left, #ff9a9e, #fad0c4 30%, #fbc2eb 60%, #a18cd1 90%);
+    background-size: 300% 300%;
+    animation: gradientShift 8s ease infinite;
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.messageContainer {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    font-size: 1rem;
+    padding-bottom: 5rem;
+}
+
+
+
+.footer {
+    background-color: #1c1f2e;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 10;
+}
+
+.inputelement_name {
+    width: 4rem;
+    color: #fff;
+    background-color: #2c2f3f;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.inputelement {
+    border: none;
+    width: 15rem;
+
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #2c2f3f;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+.inputelement:focus {
+    box-shadow: 0 0 10px #3498db;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.button_element {
+    border-radius: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    background: linear-gradient(135deg, #6dd5ed, #3498db);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.button_element:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.button_element:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+
+.myMessage,
+.otherMessage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0.5rem 0.5rem;
+    border-radius: 1rem;
+    word-wrap: break-word;
+}
+
+.myMessage {
+    align-self: flex-end;
+    background-color: rgb(238, 245, 255);
+    overflow: hidden;
+    min-height: 1.5rem;
+    margin-right: 1rem;
+}
+
+.otherMessage {
+    align-self: flex-start;
+    background-color: rgb(255, 255, 255);
+    overflow: hidden;
+    margin-left: 1rem;
+    min-height: 1.5rem;
+}
+
+.footer_name {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+}

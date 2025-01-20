@@ -1,0 +1,65 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: 80%;
+  max-width: 28rem;
+  margin: 2rem auto;
+  text-align: center;
+  animation: fade-in 0.8s ease-out;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-weight: bold;
+}
+
+.barContainer {
+  display: flex;
+  width: 100%;
+  height: 2rem;
+  border-radius: 2rem;
+  overflow: hidden;
+  background-color: rgba(200, 200, 200, 0.3);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: bold;
+  transition: width 0.3s ease;
+}
+
+.barText {
+  position: absolute;
+  font-size: 0.8rem;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 1rem;
+}
