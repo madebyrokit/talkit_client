@@ -9,8 +9,12 @@ import { format, render, cancel, register } from 'timeago.js';
 import CreateComment from "../comments/CreateComment"
 import UserInfo from "../../components/UserInfo";
 
+import { FaRegSadTear } from "react-icons/fa";
+
 import koLocale from 'timeago.js/lib/lang/ko'
 register('ko', koLocale)
+
+
 
 const Post = () => {
   const { id } = useParams();
@@ -41,7 +45,6 @@ const Post = () => {
         </div>
 
         <div className={styles.body}>
-          <p>인기 댓글</p>
           <TopComments topCommentA={post.getTopCommentA} topCommentB={post.getTopCommentB} />
         </div>
 
@@ -49,7 +52,7 @@ const Post = () => {
           <p>모든 댓글</p>
           <Comments id={id} />
 
-          {post.countComment == 0 ? <div>아직 댓글이 없습니다😞</div> : <div></div>}
+          {post.countComment == 0 ? <div><FaRegSadTear /></div> : <div></div>}
         </div>
       </div>
     </div>

@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Resister.module.css";
 import axios from "axios";
-import CustomButton from "../../components/CustomButton";
 
 function Resister() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirm_password, setConfirmPassword] = useState("");
   const [username, setUsername] = useState("");
   const [mbti, setMbti] = useState("");
   const [isAgreed, setIsAgreed] = useState(false);
@@ -42,11 +42,12 @@ function Resister() {
     if (!validateInputs()) return;
 
     axios
-      .post("http://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/signup", {
+      .post("http://localhost:8080/register", {
         email,
         password,
+        confirm_password,
         username,
-        mbtiType: mbti,
+        mbti_type: mbti,
       })
       .then((response) => {
         console.log(response.data);
@@ -207,6 +208,16 @@ function Resister() {
           </div>
 
           <div>
+            <input
+              className={styles.input_element}
+              placeholder="비밀번호 확인 (최대 12자리)"
+              type="password"
+              maxLength="12"
+              value={confirm_password}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </div>
+          <div>
             <select
               className={styles.input_element}
               onChange={(e) => setMbti(e.target.value)}
@@ -234,7 +245,7 @@ function Resister() {
 
           <div className={styles.section1_footer}>
             <div>
-              <CustomButton
+              <button
                 onClick={handleSignup}
                 label="가입하기"
                 disable={!isAgreed}

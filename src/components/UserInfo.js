@@ -6,7 +6,7 @@ const UserInfo = ({ userImage, userId, mbti }) => (
   <div className={styles.main}>
     <div className={styles.header}>
       <div className={styles.profile}>
-        <img className={styles.profile_image} src={`http://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/member/${userImage}`} />
+        <img className={styles.profile_image} src={`http://localhost:8080/member/${userImage}`} />
       </div>
 
       <div className={styles.body}>

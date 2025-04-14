@@ -1,10 +1,10 @@
 .main {
     position: fixed;
-    top: 5rem;
-    right: 0;
+    top: 3.5rem;
+    left: 0;
     width: 13rem;
     height: 100%;
-    background-color: #1c1c1e;
+    background-color: rgba(26, 26, 26, 0.9);
     color: white;
     box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
     z-index: 1000;
@@ -18,11 +18,7 @@
     transform: translateX(100%);
 }
 
-.section {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
+
 
 .header {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);

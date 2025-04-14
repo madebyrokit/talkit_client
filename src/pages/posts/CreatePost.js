@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./CreatePost.module.css";
-import { handleSubmitPost } from "../../utils/submit.js";
+import axios from "axios";
+
 
 function CreatePost({ setIsModalOpen, setPosts }) {
   const [errorMessage, setErrorMessage] = useState("");
@@ -9,6 +10,35 @@ function CreatePost({ setIsModalOpen, setPosts }) {
   const [opinionA, setOpinionA] = useState("");
   const [opinionB, setOpinionB] = useState("");
   const [isValid, setIsValid] = useState(false);
+  
+  const handleSubmitPost = async () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+        alert("로그인한 뒤에 이용할 수 있습니다.");
+        return;
+    }
+
+
+    try {
+        const response = await axios.post("http://localhost:8080/posts",
+            { title: title, opinion_a: opinionA, opinion_b: opinionB },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+        setIsModalOpen(false);
+        console.log(response.data);
+        setPosts((prevPosts) => {
+            return [response.data, ...prevPosts]; 
+        });
+
+    } catch (error) {
+        console.error("Error creating comment", error);
+        throw error;
+    }
+};
 
   useEffect(() => {
     // validateInputs를 실행하고, 결과를 isValid에 저장
@@ -43,17 +73,6 @@ function CreatePost({ setIsModalOpen, setPosts }) {
 
     setIsValid(validateInputs());
   }, [title, opinionA, opinionB]); 
-
-  const handleSubmit = () => {
-  
-    handleSubmitPost(
-      title,
-      opinionA,
-      opinionB,
-      setIsModalOpen,
-      setPosts
-    );
-  };
 
   return (
     <div className={styles.main}>
@@ -106,7 +125,7 @@ function CreatePost({ setIsModalOpen, setPosts }) {
           <button
             className={styles.button_element}
             disabled={!isValid}
-            onClick={ handleSubmit }
+            onClick={ handleSubmitPost }
           >작성하기</button>
         </div>
 

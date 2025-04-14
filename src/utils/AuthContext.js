@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem("token");
       } else if (token) {
         try {
-          const response = await axios.get("http://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/member/info", {
+          const response = await axios.get("http://localhost:8080/member", {
             headers: {
               Authorization: `Bearer ${token}`,
             },

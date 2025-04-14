@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./Login.module.css";
 import naver from "../../assets/naver_login.png";
-import useInput from "../../utils/useInput";
+
 import { useAuth } from "../../utils/AuthContext";
 import axios from "axios";
-import CustomButton from "../../components/CustomButton";
+
 import Resister from "./Resister";
 
 function Login() {
@@ -34,7 +34,7 @@ function Login() {
   const handleLogin = (e) => {
     e.preventDefault();
     axios
-      .post("http://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/signin",
+      .post("http://localhost:8080/login",
         {
           email: email,
           password: password,
@@ -60,11 +60,6 @@ function Login() {
           <div>
 
             <div className={styles.header}>
-              
-              {errmsg ? <div>아이디 혹은 비밀번호가 다릅니다.</div> : <p>Talkit</p>}
-            </div>
-
-            <div className={styles.body} >
 
               <img
                 src={naver}
@@ -72,6 +67,11 @@ function Login() {
                 alt="kakao"
                 // onClick={handleKakaoLogin}
               />
+            </div>
+
+            <div className={styles.body} >
+
+              
 
               <input
                 className={styles.input_element}
@@ -95,8 +95,8 @@ function Login() {
 
 
             <div className={styles.footer}>
-              <CustomButton onClick={handleLogin} label="로그인" />
-              <CustomButton onClick={() => setResisterMode(!resisterModal)} label="회원가입" />
+              <button onClick={handleLogin} >로그인</button>
+              <button onClick={() => setResisterMode(!resisterModal)} >회원가입</button>
             </div>
 
 

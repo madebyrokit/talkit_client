@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./pages/home/Home";
+
 import ListPosts from "./pages/posts/ListPosts";
 import Post from "./pages/posts/Post";
 import Login from "./pages/sign/Login";
@@ -26,8 +26,8 @@ function App() {
       <Router>
         <NavBar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/lists" element={<ListPosts />} />
+
+          <Route path="/" element={<ListPosts />} />
           <Route path="/post/:id" element={<Post />} />
           <Route path="/signup" element={<Resister />} />
           <Route path="/account" element={<AccountManagement />} />

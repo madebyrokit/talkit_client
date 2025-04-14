@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import CustomButton from "../../components/CustomButton";
 import styles from "./Input.module.css";
 import { useNavigate } from "react-router-dom";
 
@@ -116,7 +115,7 @@ const Input = ({ initialData, satellites }) => {
             onChange={handleNameChange}
             placeholder="이름을 입력하세요."
           />
-          <CustomButton label="추가" onClick={handleSave} />
+          <button label="추가" onClick={handleSave} />
 
         </div>
 
@@ -132,7 +131,7 @@ const Input = ({ initialData, satellites }) => {
           ))}
         </div>
         <div className={styles.section_footer}>
-          <CustomButton label="궁합보기" onClick={handleShowResult} />
+          <button label="궁합보기" onClick={handleShowResult} />
         </div>
 
         <div >
