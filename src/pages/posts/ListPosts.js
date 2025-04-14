@@ -12,7 +12,9 @@ import { useInView } from 'react-intersection-observer';
 import { FaArrowUp } from "react-icons/fa";
 import { FaComment } from "react-icons/fa";
 import { IoEyeSharp } from "react-icons/io5";
-import { MdDateRange } from "react-icons/md";
+import { IoMdTime } from "react-icons/io";
+import { VscError } from "react-icons/vsc";
+import Post from "./Post.js";
 
 const ListPosts = () => {
   const navigate = useNavigate();
@@ -20,6 +22,9 @@ const ListPosts = () => {
   const [posts, setPosts] = useState([]);
   const { isLoggedIn } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [modal, setModal] = useState(false);
+  const [selectedPostId, setSelectedPostId] = useState(null);
 
   const [hasMore, setHasMore] = useState(true);
   const [selected, setSelected] = useState("last");
@@ -78,6 +83,9 @@ const ListPosts = () => {
 
       {isModalOpen ? <CreatePost setIsModalOpen={setIsModalOpen} setPosts={setPosts} /> : <div />}
 
+      {
+        modal ? <Post postId={selectedPostId} setModal={setModal}></Post> : <></>
+      }
 
       {posts.map((data, i) =>
 
@@ -86,8 +94,13 @@ const ListPosts = () => {
           key={i}
           className={styles.section1_post}
           ref={ref}
-          onClick={() => navigate(`/post/${data.postId}`)}
+          onClick={() => {
+            setSelectedPostId(data.post_id);  // 클릭한 post_id 저장
+            setModal(true);                   // 모달 열기
+          }}
         >
+
+
           <div className={styles.body_header}>
 
             <div className={styles.start_header}>
@@ -103,7 +116,7 @@ const ListPosts = () => {
                 <FaComment color="gray" />{data.total_comments}
               </button>
               <button className={styles.info_button}>
-                <MdDateRange color="gray" />{format(`${data.created_at}`, 'ko')}
+                <IoMdTime color="gray" />{format(`${data.created_at}`, 'ko')}
               </button>
             </div>
 

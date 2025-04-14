@@ -49,7 +49,7 @@ const NavBar = () => {
 
       <div className={styles.nav_body}>
         <FaSearch className={styles.search_icon} />
-        <input className={styles.input_element} type="text" placeholder="검색 서비스 준비중입니다." />
+        <input className={styles.input_element} type="text" placeholder="검색하기" />
       </div>
 
 

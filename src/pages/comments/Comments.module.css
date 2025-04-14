@@ -1,53 +1,93 @@
-.main {
-  display: flex;
-  width: 40rem;
-  flex-direction: column;
-  align-items: stretch;
-}
+.main {}
+
 .section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 1rem;
 }
 
-
-.left {
+.section1 {
   display: flex;
-  justify-content: flex-start;
+  flex-direction: row;
   align-items: center;
-  margin-bottom: 0.5rem;
-  width: 100%; 
-
+  justify-content: center;
 }
 
-.right {
+.section1_header {
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-bottom: 0.5rem;
-  width: 100%;
-
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.body {
-  padding: 0.5rem;
-  width: 60%;
+.section1_body {
+  width: 20rem;
+  display: flex;
+  justify-content: center;
+  margin: 0 0.5rem;
+}
+
+.section1_footer {
+  display: flex;
+  justify-content: center;
+  width: 5rem;
+}
+
+.button {
+  padding: 1rem;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
   border-radius: 1rem;
-  background-color: rgb(250, 250, 250);
+  cursor: pointer;
 }
 
-.time {
-  font-size: 0.7rem;
+.button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
 }
 
-.body_header {
-  width: 100%;
+.button:hover {
+  background-color: #2980b9;
+}
+
+.section2 {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-radius: 1rem;
+  background-color: hsla(0, 0%, 0%, 0.3);
+}
+
+.section2_header {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
+
+.section2_body {}
+
+.section2_footer {}
+
+
+/* 왼쪽 (A 의견) */
+.left {
+  align-self: flex-start;
+
+  background-color: #d0eaff;
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+
+/* 오른쪽 (B 의견) */
+.right {
+  align-self: flex-end;
+  background-color: #ffe3e3;
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+
 
 .body_header_button {
   border-radius: 1rem;
@@ -58,18 +98,8 @@
   background-color: rgb(188, 188, 188);
 }
 
-.body_body {
-  margin: 1rem;
-}
 
-.body_footer {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.body_footer_button {
+.section2_footer_button {
   border-radius: 1rem;
   padding: 0.5rem;
 }
@@ -80,4 +110,10 @@
 
 .loading {
   text-align: center;
+}
+
+.input_element {
+  border-radius: 1rem;
+  padding: 1rem;
+  width: 100%;
 }

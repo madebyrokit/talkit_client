@@ -5,9 +5,11 @@ import ModalComment from "./MoldalComment.js";
 import { handleLikeComment } from "../../utils/submit.js";
 import { format, render, cancel, register } from 'timeago.js';
 import koLocale from 'timeago.js/lib/lang/ko';
-import CreateComment from "./CreateComment.js";
 import { useInView } from 'react-intersection-observer';
 import axios from "axios";
+import OpinionButton from "../../components/OpinionButton.js"
+import { useAuth } from "../../utils/AuthContext.js";
+import { MdMoreHoriz } from "react-icons/md";
 register('ko', koLocale);
 
 
@@ -16,6 +18,10 @@ const Comments = ({ id }) => {
   const [commentList, setCommentList] = useState([]);
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
+  const { isLoggedIn } = useAuth();
+
+  const [newComment, setNewComment] = useState("");
+  const [selectedOpinion, setSelectedOpinion] = useState(null);
 
   const [ref, inView] = useInView({
     threshold: 0.5,
@@ -24,7 +30,7 @@ const Comments = ({ id }) => {
   useEffect(() => {
     const loadPosts = async () => {
       try {
-        const response = await axios.get(`http://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/comment/list?page=${page}&size=3&postid=${id}`);
+        const response = await axios.get(`http://localhost:8080/comments?page=${page}&size=3&post_id=${id}`);
         setCommentList((prevPosts) => [...prevPosts, ...response.data]);
         setHasMore(response.data.length > 0);
         setPage(prevPage => prevPage + 1);
@@ -43,49 +49,84 @@ const Comments = ({ id }) => {
 
   return (
     <div className={styles.main}>
+<div className={styles.section}>
+  <p>모든 댓글</p>
+</div>
+      <div className={styles.section1}>
+        <div className={styles.section1_header}>
+          <OpinionButton
+            opinion="A"
+            selectedOpinion={selectedOpinion}
+            setSelectedOpinion={setSelectedOpinion}
+            isLoggedIn={isLoggedIn}
+          />
+          <OpinionButton
+            opinion="B"
+            selectedOpinion={selectedOpinion}
+            setSelectedOpinion={setSelectedOpinion}
+            isLoggedIn={isLoggedIn}
+          />
+        </div>
 
-      <div className={styles.section}>
-        <CreateComment postId={id} setCommentList={setCommentList} />
+        <div className={styles.section1_body}>
+          <input
+            className={styles.input_element}
+            value={newComment}
+            onChange={(e) => setNewComment(e.target.value)}
+            placeholder={isLoggedIn ? "의견을 적어주세요" : "로그인 후에 이용 가능한 기능입니다."}
+            disabled={!isLoggedIn} />
+        </div>
+
+        <div className={styles.section1_footer}>
+          <button className={styles.button} disabled={!isLoggedIn}>
+            작성
+          </button>
+        </div>
+
       </div>
 
-      {commentList.map((comment, i) => (
-        <div key={comment.commentId}
-        ref={ref}
-          className={comment.option === "A" ? styles.left : styles.right}
-        >
-          {modal === comment.commentId ? <ModalComment setModal={setModal} />
-            : <div className={styles.body}>
-              <div className={styles.body_header}>
-                <UserInfo
-                  userImage={comment.profileImage}
-                  userId={comment.username}
-                  mbti={comment.mbtiType}
-                  opinion={comment.postId}
-                />
-                <p className={styles.time}>{format(`${comment.createAt}`, 'ko')}</p>
-                <div className={styles.body_header_button}
-                  onClick={() => setModal((prevId => prevId === comment.commentId ? null : comment.commentId))}>···</div>
-              </div>
 
-              <div className={styles.body_body}>
-                {comment.content}
-              </div>
+      <div className={styles.section2}>
+        {commentList.map((comment, i) => (
+          <div key={comment.commentId} ref={ref} className={comment.opinion === "A" ? styles.left : styles.right}>
 
-              <div className={styles.body_footer}>
-                <div
-                  className={styles.body_footer_button}
-                  onClick={() => {
-                    handleLikeComment(comment.commentId, i, commentList, setCommentList);
-                  }}
-                >
-                  👍&nbsp;{comment.like}
-                </div>
+
+            <div className={styles.section2_header}>
+              <UserInfo
+                userImage={comment.avatar}
+                userId={comment.username}
+                mbti={comment.mbti_type}
+                opinion={comment.post_id}
+              />
+              <p className={styles.time}>{format(`${comment.created_at}`, 'ko')}</p>
+              <button className={styles.body_header_button}
+                onClick={() => setModal((prevId => prevId === comment.comment_id ? null : comment.comment_id))}>
+                <MdMoreHoriz />
+              </button>
+            </div>
+
+            <div className={styles.section2_body}>
+              {comment.content}
+            </div>
+
+            <div className={styles.section2_footer}>
+              <div
+                className={styles.section2_footer_button}
+              // onClick={() => {
+              //   handleLikeComment(comment.commentId, i, commentList, setCommentList);
+              // }}
+              >
+                👍&nbsp;{comment.like}
               </div>
-            </div>}
-        </div>
-      ))}
-      
-      {hasMore ? <div className={styles.loading}>로딩 중...</div> : <div></div>}
+            </div>
+
+
+          </div>
+        ))}
+
+        {hasMore ? <div className={styles.loading}>로딩 중...</div> : <div></div>}
+      </div>
+
     </div>
   );
 };
