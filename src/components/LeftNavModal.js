@@ -7,6 +7,10 @@ import { useAuth } from "../utils/AuthContext";
 const LeftNavModal = ({ setModal }) => {
     const { isLoggedIn, setIsLoggedIn, user } = useAuth();
     const navigate = useNavigate();
+    const handleClick = (category) => {
+        navigate('/', { state: { category } });
+        setModal(false);
+    };
 
     const handleLogout = () => {
         setIsLoggedIn(false);
@@ -24,14 +28,12 @@ const LeftNavModal = ({ setModal }) => {
             <div className={styled.header}>
             </div>
             <div className={styled.body}>
-                <p onClick={() => { navigate('/') }}>자유 토론</p>
-                <p onClick={() => { navigate('/chat') }}>국내 주식</p>
-                <p onClick={() => { navigate('/compatibility') }}>미국 주식</p>
-                <p onClick={() => { navigate('/compatibility') }}>코인</p>
+                <p onClick={() => handleClick('자유 토론')}>자유 토론</p>
+                <p onClick={() => handleClick('국내 주식')}>국내 주식</p>
+                <p onClick={() => handleClick('미국 주식')}>미국 주식</p>
+                <p onClick={() => handleClick('코인')}>코인</p>
             </div>
-            <div className={styled.footer}>
-                &copy; {new Date().getFullYear()} MadeByRokit
-            </div>
+            
 
         </div>
     )

@@ -14,12 +14,6 @@
     transition: transform 0.3s ease;
 }
 
-.main.hidden {
-    transform: translateX(100%);
-}
-
-
-
 .header {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     padding-bottom: 1rem;
@@ -36,20 +30,11 @@
     gap: 1rem;
 }
 
-.body p {
-    cursor: pointer;
-    padding: 0.5rem 0.8rem;
-    border-radius: 0.5rem;
-    transition: background-color 0.3s ease;
+.element {
+   cursor: pointer; 
+   padding: 0.5rem;
+   border-radius: 1rem;
 }
-
-.body p:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.footer {
-    margin-top: auto;
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.6);
-    text-align: center;
-}
+.element:hover {
+    background-color: rgb(252, 252, 252, 0.1);
+ }

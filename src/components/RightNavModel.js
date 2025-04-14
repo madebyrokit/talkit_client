@@ -24,22 +24,26 @@ const RightNavModel = ({ setModal }) => {
 
             {isLoggedIn ?
                 <div className={styled.header}>
+
                     현재 로그인 계정
                     <UserInfo mbti={user.mbti_type} userImage={user.avatar} userId={user.username} />
-                </div> : <></>
+                </div> :
+                <div>
+
+                </div>
             }
             <div className={styled.body}>
                 {isLoggedIn ?
                     <>
-                        <p onClick={handleMypage}>마이페이지</p>
-                        <p onClick={handleLogout}>로그아웃</p>
-                        <p onClick={handleLogout}>글쓰기</p>
+                        <p className={styled.element} onClick={handleMypage}>마이페이지</p>
+                        <p className={styled.element} onClick={handleLogout}>로그아웃</p>
+                        <p className={styled.element} onClick={handleLogout}>글쓰기</p>
                     </> : <>
-                        <p onClick={() => { navigate('/login') }}>로그인</p>
+                        <p className={styled.element} onClick={() => { navigate('/login') }}>로그인</p>
                     </>}
-                <p onClick={() => { navigate('/') }}>토론하기</p>
-                <p onClick={() => { navigate('/chat') }}>채팅하기</p>
-                <p onClick={() => { navigate('/compatibility') }}>케미보기</p>
+                <p className={styled.element} onClick={() => { navigate('/') }}>토론하기</p>
+                <p className={styled.element} onClick={() => { navigate('/chat') }}>채팅하기</p>
+                <p className={styled.element} onClick={() => { navigate('/compatibility') }}>케미보기</p>
             </div>
             <div className={styled.footer}>
                 &copy; {new Date().getFullYear()} MadeByRokit

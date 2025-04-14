@@ -1,13 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useAuth } from "../../utils/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./ListPosts.module.css";
 import UserInfo from "../../components/UserInfo";
 import { format } from 'timeago.js';
 import { handleLikePost } from "../../utils/submit.js";
 import CreatePost from "./CreatePost.js";
 import { useInView } from 'react-intersection-observer';
+
+import ad1 from "../../assets/ad1.jpeg";
+import ad2 from "../../assets/ad2.jpeg";
 
 import { FaArrowUp } from "react-icons/fa";
 import { FaComment } from "react-icons/fa";
@@ -30,6 +33,9 @@ const ListPosts = () => {
   const [selected, setSelected] = useState("last");
 
   const [page, setPage] = useState(0);
+
+  const location = useLocation();
+  const category = location.state?.category;
 
   const [ref, inView] = useInView({
     threshold: 0.5,
@@ -63,23 +69,6 @@ const ListPosts = () => {
 
   return (
     <div className={styles.main}>
-      {/* <div className={styles.section}>
-
-        <div className={styles.section_header}>
-          <select className={styles.select_element} onChange={handleSelect} value={selected}>
-            <option value="last">최신순</option>
-            <option value="view_desc">조회수 ↓</option>
-            <option value="comment_desc">댓글 ↓</option>
-            <option value="like_desc">좋아요 ↓</option>
-          </select>
-          <input className={styles.input_element} type="text" placeholder="검색 서비스 준비중입니다." />
-        </div>
-
-        <div className={styles.section_header1}>
-          {isLoggedIn ? <button className={styles.button_element} onClick={() => setIsModalOpen((e) => !e)}>글쓰기</button> : <div />}
-        </div>
-
-      </div> */}
 
       {isModalOpen ? <CreatePost setIsModalOpen={setIsModalOpen} setPosts={setPosts} /> : <div />}
 
@@ -87,74 +76,82 @@ const ListPosts = () => {
         modal ? <Post postId={selectedPostId} setModal={setModal}></Post> : <></>
       }
 
-      {posts.map((data, i) =>
+      <div className={styles.section1}>
+        <img src={ad1} />
+        <img src={ad1} />
+        <img src={ad1} />
+      </div>
 
-      (
-        <div
-          key={i}
-          className={styles.section1_post}
-          ref={ref}
-          onClick={() => {
-            setSelectedPostId(data.post_id);  // 클릭한 post_id 저장
-            setModal(true);                   // 모달 열기
-          }}
-        >
+      <div className={styles.section2}>
 
+        <div className={styles.section2_header}>
+          {
+            category ? <h3>{category}</h3> : <h3>자유 토론</h3>
+          }
 
-          <div className={styles.body_header}>
-
-            <div className={styles.start_header}>
-              <UserInfo userImage={data.avatar} userId={data.username} mbti={data.mbti_type} />
-            </div>
-
-
-            <div className={styles.end_header}>
-              <button className={styles.info_button}>
-                <IoEyeSharp color="gray" />{data.total_views}
-              </button>
-              <button className={styles.info_button}>
-                <FaComment color="gray" />{data.total_comments}
-              </button>
-              <button className={styles.info_button}>
-                <IoMdTime color="gray" />{format(`${data.created_at}`, 'ko')}
-              </button>
-            </div>
-
-            {/* <select className={styles.select_element} onChange={handleSelect} value={selected}>
-                      <option value="last">최신순</option>
-                      <option value="view_desc">조회수 ↓</option>
-                      <option value="comment_desc">댓글 ↓</option>
-                      <option value="like_desc">좋아요 ↓</option>
-                    </select> */}
-
-
-
-
-          </div>
-
-          <div className={styles.body_body}>
-            <span>{data.title}</span>
-            <p>A. {data.opinion_a}</p>
-            <p>B. {data.opinion_b}</p>
-          </div>
-          <div className={styles.body_footer}>
-            {/* <div
-                className={styles.body_footer_button}
-                onClick={(e) => { e.stopPropagation(); handleLikePost(data.postId, i, posts, setPosts); }}>
-                👍&nbsp;{data.like}
-              </div> */}
-            <button className={styles.like_button}>
-              <FaArrowUp
-                onClick={(e) => { e.stopPropagation(); handleLikePost(data.postId, i, posts, setPosts); }} />
-              {data.total_likes}
-            </button>
-
-
-          </div>
+          <select className={styles.select_element} onChange={handleSelect} value={selected}>
+            <option value="last">최신순</option>
+            <option value="view_desc">조회수 high to low</option>
+            <option value="comment_desc">댓글 high to low</option>
+            <option value="like_desc">좋아요 high to low</option>
+          </select>
         </div>
-      ))}
 
-      {hasMore ? <div className={styles.loading}>로딩 중...</div> : <div>더 이상 게시물이 없습니다.</div>}
+        {posts.map((data, i) => (
+
+          <div className={styles.hor}>
+            <div
+              key={i}
+              className={styles.post}
+              ref={ref}
+              onClick={() => {
+                setSelectedPostId(data.post_id);  // 클릭한 post_id 저장
+                setModal(true);                   // 모달 열기
+              }}
+            >
+              <div className={styles.post_header}>
+                <div className={styles.post_header_front}>
+                  <UserInfo userImage={data.avatar} userId={data.username} mbti={data.mbti_type} />
+                </div>
+                <div className={styles.post_header_rear}>
+                  <button className={styles.info_button}>
+                    <IoEyeSharp color="gray" />{data.total_views}
+                  </button>
+                  <button className={styles.info_button}>
+                    <FaComment color="gray" />{data.total_comments}
+                  </button>
+                  <button className={styles.info_button}>
+                    <IoMdTime color="gray" />{format(`${data.created_at}`, 'ko')}
+                  </button>
+                </div>
+              </div>
+
+              <div className={styles.post_body}>
+                <span>{data.title}</span>
+                <p>A. {data.opinion_a}</p>
+                <p>B. {data.opinion_b}</p>
+              </div>
+
+              <div className={styles.post_footer}>
+                <button className={styles.like_button}>
+                  <FaArrowUp
+                    onClick={(e) => { e.stopPropagation(); handleLikePost(data.postId, i, posts, setPosts); }} />
+                  {data.total_likes}
+                </button>
+              </div>
+
+            </div>
+          </div>
+        ))}
+        {hasMore ? <div className={styles.loading}>로딩 중...</div> : <div>END</div>}
+      </div>
+
+      <div className={styles.section3}>
+        <img src={ad2} />
+        <img src={ad2} />
+        <img src={ad2} />
+      </div>
+
     </div>
   );
 };

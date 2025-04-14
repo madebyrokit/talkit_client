@@ -35,7 +35,7 @@ const NavBar = () => {
   return (
     <nav className={styles.navbar}>
       {modal ? <RightNavModel setModal={setModal} setIsLoggedIn={setIsLoggedIn} /> : <div />}
-      {leftModal ? <LeftNavModal setModal={setModal} setIsLoggedIn={setIsLoggedIn} /> : <div />}
+      {leftModal ? <LeftNavModal setModal={setLeftModal} setIsLoggedIn={setIsLoggedIn} /> : <div />}
 
       <div className={styles.navbar_header} >
         <button className={styles.detail_button} onClick={() => { setLeftModal((e) => !e) }}>

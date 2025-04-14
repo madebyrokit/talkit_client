@@ -39,7 +39,7 @@ const Post = ({ postId, setModal }) => {
   return (
     <div className={styles.main}>
 
-      <div className={styles.section1}>
+      <div className={styles.section1} onClick={() => { setModal(false) }}>
         
         <div className={styles.menu} onClick={() => { setModal(false) }}>
           <button className={styles.aa}>
@@ -53,10 +53,10 @@ const Post = ({ postId, setModal }) => {
           </div>
 
           <div className={styles.section1_header_rear}>
-            <button>
+            <button className={styles.info_button}>
               <IoEyeSharp />{post.view}
             </button>
-            <button>
+            <button className={styles.info_button}>
               <IoMdTime />{format(`${post.created_at}`, 'ko')}
             </button>
           </div>

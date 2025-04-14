@@ -4,7 +4,7 @@
   left: 0rem;
   width: 100%;
   height: 100vh;
-  background-color: hsla(0, 0%, 84%, 0.9); /* 반투명 배경 */
+  background-color: rgba(238, 238, 238, 0.9); /* 반투명 배경 */
   z-index: 999;
 }
 
@@ -28,6 +28,25 @@ justify-content: end;
 .aa:hover{
   border: none;
 }
+
+.info_button {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem;
+  background-color: #ededed;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.info_button:hover {
+  background-color: #ffffff;
+  transform: translateY(-5px);
+}
+
 .section1_header {
   display: flex;
   flex-direction: row;
@@ -39,7 +58,8 @@ justify-content: end;
 }
 
 .section1_header_rear {
-
+  display: flex;
+  flex-direction: row;
 }
 
 .section1_body {

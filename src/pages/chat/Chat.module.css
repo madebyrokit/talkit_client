@@ -4,7 +4,7 @@
     flex-direction: column;
     align-items: center;
     height: 100vh;
-    background-image: radial-gradient(circle at top left, #ff9a9e, #fad0c4 30%, #fbc2eb 60%, #a18cd1 90%);
+    background-image: radial-gradient(circle at top left, #000000, #bdbdbd 30%, #aaa5a9 60%, #ffffff 90%);
     background-size: 300% 300%;
     animation: gradientShift 8s ease infinite;
     opacity: 1;
@@ -81,7 +81,7 @@
 }
 
 .button_element {
-    border-radius: 0.5rem;
+    border-radius: 100%;
     width: 2rem;
     height: 2rem;
     border: none;
