@@ -6,9 +6,11 @@ import naver from "../../assets/naver_login.png";
 import { useAuth } from "../../utils/AuthContext";
 import axios from "axios";
 
+import { MdClose } from "react-icons/md";
+
 import Resister from "./Resister";
 
-function Login() {
+function Login({ setLoginModal }) {
   const navigate = useNavigate();
   const location = useLocation();
   const [email, setEmail] = useState("");
@@ -54,56 +56,54 @@ function Login() {
   };
 
   return (
-    <div className={styles.main}>
-      {resisterModal == false ?
-        <div className={styles.section}>
-          <div>
+    <div className={styles.main} onClick={(e) => setLoginModal(false)}>
 
-            <div className={styles.header}>
+      <div className={styles.section} onClick={(e) => { e.stopPropagation() }} >
 
-              <img
-                src={naver}
-                className={styles.oauth_image}
-                alt="kakao"
-                // onClick={handleKakaoLogin}
-              />
-            </div>
-
-            <div className={styles.body} >
-
-              
-
-              <input
-                className={styles.input_element}
-                type="text"
-                id="email"
-                placeholder="이메일"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <input
-                className={styles.input_element}
-                type="password"
-                id="password"
-                placeholder="비밀번호"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-
-
-            <div className={styles.footer}>
-              <button onClick={handleLogin} >로그인</button>
-              <button onClick={() => setResisterMode(!resisterModal)} >회원가입</button>
-            </div>
-
-
-
-          </div>
+        <div className={styles.header}>
+          <MdClose className={styles.close_icon} size={30} onClick={(e) => setLoginModal(false)}/>
+          <h2 className={styles.login_text}>로그인</h2>
+          <p className={styles.login_term}>계속해서 귀하는 당사의 사용자 계약에 동의하고 개인정보 보호정책을 이해하고 있음을 인정합니다.</p>
+          
         </div>
-        : <Resister />}
+
+        <div className={styles.body} >
+        <img
+            src={naver}
+            className={styles.oauth_image}
+            alt="kakao"
+          />
+          <input
+            className={styles.input_element}
+            type="text"
+            id="email"
+            placeholder="이메일"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            className={styles.input_element}
+            type="password"
+            id="password"
+            placeholder="비밀번호"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+
+
+        <div className={styles.footer}>
+          <button className={styles.register_button} onClick={() => setResisterMode(!resisterModal)} >회원가입</button>
+
+          <button className={styles.login_button} onClick={handleLogin} >로그인</button>
+        </div>
+
+
+
+      </div>
+
     </div>
   );
 }

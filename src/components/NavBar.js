@@ -9,6 +9,7 @@ import { FaSearch } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
 import { MdMoreHoriz } from "react-icons/md";
 import LeftNavModal from "./LeftNavModal";
+import Login from "../pages/sign/Login";
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -16,6 +17,8 @@ const NavBar = () => {
 
   const [modal, setModal] = useState(false);
   const [leftModal, setLeftModal] = useState(false);
+  const [loginModal, setLoginModal] = useState(false);
+
   const homeHandler = () => { navigate('/') }
   const handler = () => {
     navigate('/lists');
@@ -33,39 +36,44 @@ const NavBar = () => {
   }
 
   return (
-    <nav className={styles.navbar}>
-      {modal ? <RightNavModel setModal={setModal} setIsLoggedIn={setIsLoggedIn} /> : <div />}
-      {leftModal ? <LeftNavModal setModal={setLeftModal} setIsLoggedIn={setIsLoggedIn} /> : <div />}
+    <div>
 
-      <div className={styles.navbar_header} >
-        <button className={styles.detail_button} onClick={() => { setLeftModal((e) => !e) }}>
-          <FaBars size={20} color="white" />
-        </button>
-        <button className={styles.logo_element} onClick={homeHandler} >
-          <img src={logo} className={styles.logo_img}></img>
-          <p className={styles.logo_text}>Stocking</p>
-        </button>
-      </div>
-
-      <div className={styles.nav_body}>
-        <FaSearch className={styles.search_icon} />
-        <input className={styles.input_element} type="text" placeholder="검색하기" />
-      </div>
+{loginModal ? <Login setLoginModal={setLoginModal} /> : <></>}
+       
+      <nav className={styles.navbar}>
+         {modal ? <RightNavModel setModal={setModal} setIsLoggedIn={setIsLoggedIn} /> : <div />}
+        {leftModal ? <LeftNavModal setModal={setLeftModal} setIsLoggedIn={setIsLoggedIn} /> : <div />}
 
 
+        <div className={styles.navbar_header} >
+          <button className={styles.detail_button} onClick={() => { setLeftModal((e) => !e) }}>
+            <FaBars size={20} color="white" />
+          </button>
+          <button className={styles.logo_element} onClick={homeHandler} >
+            <img src={logo} className={styles.logo_img}></img>
+            <p className={styles.logo_text}>Stocking</p>
+          </button>
+        </div>
 
-      <div className={styles.nav_footer}>
+        <div className={styles.nav_body}>
+          <FaSearch className={styles.search_icon} />
+          <input className={styles.input_element} type="text" placeholder="검색하기" />
+        </div>
 
-        <button className={styles.login_button} onClick={() => { navigate('/login') }}>
-          로그인
-        </button>
-        <button className={styles.detail_button} onClick={() => { setModal((e) => !e) }}>
-          <MdMoreHoriz size={30} color="white" />
-        </button>
 
-      </div>
-    </nav>
 
+        <div className={styles.nav_footer}>
+
+          <button className={styles.login_button} onClick={() => { setLoginModal(true) }}>
+            로그인
+          </button>
+          <button className={styles.detail_button} onClick={() => { setModal((e) => !e) }}>
+            <MdMoreHoriz size={30} color="white" />
+          </button>
+
+        </div>
+      </nav>
+    </div>
   );
 };
 
