@@ -1,33 +1,6 @@
 import axios from "axios";
 
-export const handleSubmitPost = async (title, opinionA, opinionB, setIsModalOpen, setPosts) => {
-    const token = localStorage.getItem("token");
 
-    if (!token) {
-        alert("로그인한 뒤에 이용할 수 있습니다.");
-        return;
-    }
-
-
-    try {
-        const response = await axios.post("http://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/post",
-            { title: title, optionA: opinionA, optionB: opinionB },
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-        setIsModalOpen(false);
-        console.log(response.data);
-        setPosts((prevPosts) => {
-            return [response.data, ...prevPosts]; 
-        });
-
-    } catch (error) {
-        console.error("Error creating comment", error);
-        throw error;
-    }
-};
 
 export const handleSubmitComment = async (postId, content, option, setComments) => {
     const token = localStorage.getItem("token");

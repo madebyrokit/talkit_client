@@ -63,7 +63,7 @@ function Login({ setLoginModal }) {
         <div className={styles.header}>
           <MdClose className={styles.close_icon} size={30} onClick={(e) => setLoginModal(false)}/>
           <h2 className={styles.login_text}>로그인</h2>
-          <p className={styles.login_term}>계속해서 귀하는 당사의 사용자 계약에 동의하고 개인정보 보호정책을 이해하고 있음을 인정합니다.</p>
+          <p className={styles.login_term}>계속해서 귀하는 당사의 사용자 약관에 동의하고 개인정보 보호정책을 이해하고 있음을 동의합니다.</p>
           
         </div>
 

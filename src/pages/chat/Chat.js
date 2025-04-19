@@ -17,7 +17,7 @@ const Chat = () => {
 
     useEffect(() => {
         axios
-            .get("http://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/chat")
+            .get("http://localhost:8080/chat")
             .then((result) => {
                 setMessages(result.data);
             })
@@ -25,7 +25,7 @@ const Chat = () => {
                 console.error("Error fetching data: ", error);
             });
         const stompClient = new Client({
-            brokerURL: "ws://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/ws",
+            brokerURL: "ws://localhost:8080/ws",
             connectHeaders: {},
             debug: (str) => { }, // 디버그 메시지 출력
             onConnect: () => {
