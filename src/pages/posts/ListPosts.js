@@ -49,10 +49,9 @@ const ListPosts = () => {
   }
 
   useEffect(() => {
-
     const loadPosts = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/posts/list?page=${page}&size=10&sort=${selected}`);
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/posts/list?page=${page}&size=10&sort=${selected}`);
         setPosts((prevPosts) => [...prevPosts, ...response.data]);
         setHasMore(response.data.length > 0);
         setPage((e) => e + 1);

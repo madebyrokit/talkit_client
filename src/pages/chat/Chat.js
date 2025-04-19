@@ -9,15 +9,17 @@ const Chat = () => {
     const [messages, setMessages] = useState([]);  // 수신한 메시지 목록
     const [message, setMessage] = useState('');  // 입력된 메시지 상태
     const [userName, setUserName] = useState('');  // 사용자 이름
+    const messagesEndRef = useRef(null); // 메시지 끝에 대한 ref
 
     const [ref, inView] = useInView({
         threshold: 0.5,
     });
-    const messagesEndRef = useRef(null); // 메시지 끝에 대한 ref
+
 
     useEffect(() => {
+
         axios
-            .get("http://localhost:8080/chat")
+            .get(`${process.env.REACT_APP_API_URL}/chat`)
             .then((result) => {
                 setMessages(result.data);
             })
@@ -25,7 +27,7 @@ const Chat = () => {
                 console.error("Error fetching data: ", error);
             });
         const stompClient = new Client({
-            brokerURL: "ws://localhost:8080/ws",
+            brokerURL: `${process.env.REACT_APP_WEBSOCKET_URL}/ws`,
             connectHeaders: {},
             debug: (str) => { }, // 디버그 메시지 출력
             onConnect: () => {
@@ -44,13 +46,11 @@ const Chat = () => {
 
         stompClient.activate();  // WebSocket 연결 시작
         setClient(stompClient);
-        sessionStorage.setItem("uuid", generateUUID())
 
-        // 컴포넌트 언마운트 시 클라이언트 비활성화
-        return () => {
-            stompClient.deactivate();
-            sessionStorage.clear();
-        };
+        if (sessionStorage.getItem("uuid") == null) {
+            sessionStorage.setItem("uuid", generateUUID());
+        }
+
     }, []);
 
     const generateUUID = () => {

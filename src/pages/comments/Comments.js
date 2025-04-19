@@ -30,7 +30,7 @@ const Comments = ({ id }) => {
   useEffect(() => {
     const loadPosts = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/comments?page=${page}&size=3&post_id=${id}`);
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/comments?page=${page}&size=3&post_id=${id}`);
         setCommentList((prevPosts) => [...prevPosts, ...response.data]);
         setHasMore(response.data.length > 0);
         setPage(prevPage => prevPage + 1);

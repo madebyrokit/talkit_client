@@ -21,7 +21,7 @@ function CreatePost({ setIsModalOpen, setPosts }) {
 
 
     try {
-        const response = await axios.post("http://localhost:8080/posts",
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/posts`,
             { title: title, opinion_a: opinionA, opinion_b: opinionB },
             {
                 headers: {

@@ -26,7 +26,7 @@ const Post = ({ postId, setModal }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/posts?post_id=${postId}`)
+      .get(`${process.env.REACT_APP_API_URL}/posts?post_id=${postId}`)
       .then((response) => {
         setPost(response.data);
         console.log(response.data);
