@@ -5,7 +5,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./ListPosts.module.css";
 import UserInfo from "../../components/UserInfo";
 import { format } from 'timeago.js';
-import { handleLikePost } from "../../utils/submit.js";
 import CreatePost from "./CreatePost.js";
 import { useInView } from 'react-intersection-observer';
 
@@ -47,6 +46,40 @@ const ListPosts = () => {
     setPosts([]);
     setHasMore(true);
   }
+
+  const handleLikePost = async (postId, index, posts, setPosts) => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+        alert("로그인이 필요합니다.");
+        return;
+    }
+
+
+    try {
+        const response = await axios.post(
+            `${process.env.REACT_APP_API_URL}/posts/like`,
+            { postId: postId },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+
+        const updatedPosts = [...posts];
+        updatedPosts[index] = {
+            ...updatedPosts[index],
+            like: response.data,
+        };
+
+        setPosts(updatedPosts);
+        console.log(response.data)
+    } catch (error) {
+        console.error("Error", error);
+        alert("글 좋아요 변경에 실패했습니다.");
+    }
+};
 
   useEffect(() => {
     const loadPosts = async () => {

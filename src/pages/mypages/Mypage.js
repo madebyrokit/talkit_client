@@ -10,7 +10,7 @@ export const Mypage = () => {
   const navigate = useNavigate();
 
   const deleteHandler = () => {
-    axios.delete("http://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/member", {
+    axios.delete(`${process.env.REACT_APP_API_URL}/member`, {
       headers : {
         Authorization: `Bearer ${localStorage.getItem("token")}`
       },
@@ -27,7 +27,7 @@ export const Mypage = () => {
       <div className={styles.section}>
         
         <div className={styles.header}>
-          <UserInfo userImage={user.profileImage} userId={user.username} mbti={user.mbtiType} />
+          <UserInfo userImage={user.avatar} userId={user.username} mbti={user.mbti_type} />
           <p onClick={() => navigate('/account')} >계정 관리</p>
         </div>
         <div className={styles.body}>

@@ -36,7 +36,7 @@ function Login({ setLoginModal }) {
   const handleLogin = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8080/login",
+      .post(`${process.env.REACT_APP_API_URL}/login`,
         {
           email: email,
           password: password,
@@ -47,7 +47,7 @@ function Login({ setLoginModal }) {
         let accessToken = response.headers["authorization"];
         localStorage.setItem("token", accessToken.substring(accessToken.lastIndexOf(" ") + 1));
         setIsLoggedIn(true);
-        navigate('/');
+        setLoginModal(false);
       })
       .catch((error) => {
         console.error("로그인 요청 실패:", error);
@@ -61,14 +61,14 @@ function Login({ setLoginModal }) {
       <div className={styles.section} onClick={(e) => { e.stopPropagation() }} >
 
         <div className={styles.header}>
-          <MdClose className={styles.close_icon} size={30} onClick={(e) => setLoginModal(false)}/>
+          <MdClose className={styles.close_icon} size={30} onClick={(e) => setLoginModal(false)} />
           <h2 className={styles.login_text}>로그인</h2>
           <p className={styles.login_term}>계속해서 귀하는 당사의 사용자 약관에 동의하고 개인정보 보호정책을 이해하고 있음을 동의합니다.</p>
-          
+
         </div>
 
         <div className={styles.body} >
-        <img
+          <img
             src={naver}
             className={styles.oauth_image}
             alt="kakao"

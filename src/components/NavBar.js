@@ -38,10 +38,10 @@ const NavBar = () => {
   return (
     <div>
 
-{loginModal ? <Login setLoginModal={setLoginModal} /> : <></>}
-       
+      {loginModal ? <Login setLoginModal={setLoginModal} /> : <></>}
+
       <nav className={styles.navbar}>
-         {modal ? <RightNavModel setModal={setModal} setIsLoggedIn={setIsLoggedIn} /> : <div />}
+        {modal ? <RightNavModel setModal={setModal} setIsLoggedIn={setIsLoggedIn} /> : <div />}
         {leftModal ? <LeftNavModal setModal={setLeftModal} setIsLoggedIn={setIsLoggedIn} /> : <div />}
 
 
@@ -64,9 +64,12 @@ const NavBar = () => {
 
         <div className={styles.nav_footer}>
 
-          <button className={styles.login_button} onClick={() => { setLoginModal(true) }}>
-            로그인
-          </button>
+          {isLoggedIn ? <></>
+            : <button className={styles.login_button} onClick={() => { setLoginModal(true) }}>
+              로그인
+            </button>
+          }
+
           <button className={styles.detail_button} onClick={() => { setModal((e) => !e) }}>
             <MdMoreHoriz size={30} color="white" />
           </button>

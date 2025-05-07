@@ -4,7 +4,7 @@ import axios from "axios";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState({});
 
   const isTokenExpired = (token) => {
@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem("token");
       } else if (token) {
         try {
-          const response = await axios.get("http://localhost:8080/member", {
+          const response = await axios.get(`${process.env.REACT_APP_API_URL}/member`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },

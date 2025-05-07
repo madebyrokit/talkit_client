@@ -9,9 +9,9 @@ const RightNavModel = ({ setModal }) => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
+        localStorage.clear("token")
         setIsLoggedIn(false);
         setModal(false);
-        navigate('/');
     };
 
     const handleMypage = () => {

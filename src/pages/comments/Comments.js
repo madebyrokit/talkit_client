@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from "react";
 import UserInfo from "../../components/UserInfo";
 import styles from "./Comments.module.css";
 import ModalComment from "./MoldalComment.js";
-import { handleLikeComment } from "../../utils/submit.js";
 import { format, render, cancel, register } from 'timeago.js';
 import koLocale from 'timeago.js/lib/lang/ko';
 import { useInView } from 'react-intersection-observer';
@@ -26,6 +25,64 @@ const Comments = ({ id }) => {
   const [ref, inView] = useInView({
     threshold: 0.5,
   });
+
+   const handleSubmitComment = async (postId, content, option, setComments) => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+        alert("로그인한 뒤에 이용할 수 있습니다.");
+        return;
+    }
+
+    try {
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/comments`,
+            { postId: postId, content: content, option: option }, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        setComments((prevComments) => [response.data, ...prevComments]);
+
+    } catch (error) {
+        console.error("Error", error);
+        alert("댓글 작성에 실패했습니다.");
+    }
+};
+
+const handleLikeComment = async (commentId, index, comments, setComments) => {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+      alert("로그인한 뒤에 이용할 수 있습니다.");
+      return;
+  }
+
+  try {
+      const response = await axios.post(
+          `${process.env.REACT_APP_API_URL}/comments/like`,
+          { commentId: commentId },
+          {
+              headers: {
+                  Authorization: `Bearer ${token}`,
+              },
+          }
+      );
+
+      console.log(response.data)
+      const updatedComments = [...comments];
+      updatedComments[index] = {
+          ...updatedComments[index],
+          like: response.data,
+      };
+
+      setComments(updatedComments);
+      console.log(updatedComments)
+  } catch (error) {
+      console.error("Error", error);
+      alert("댓글 좋아요 변경에 실패했습니다.");
+  }
+};
 
   useEffect(() => {
     const loadPosts = async () => {

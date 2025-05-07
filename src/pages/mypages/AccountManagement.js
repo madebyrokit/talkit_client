@@ -20,7 +20,7 @@ const AccountManagement = () => {
 
     try {
       const response = await axios.post(
-        "http://ec2-43-200-178-68.ap-northeast-2.compute.amazonaws.com:8080/member/profileimage", // 서버의 API 엔드포인트
+        `${process.env.REACT_APP_AP_URL}/member/avatar`,
         formData,
         {
           headers: {
@@ -44,7 +44,7 @@ const AccountManagement = () => {
         <input
           type="file"
           accept="image/*"
-          onChange={handleFileChange} // 파일 선택 시 실행되는 이벤트 핸들러
+          onChange={handleFileChange}
         />
         <button onClick={handleSubmit}>프로필 이미지 업로드</button>
       </div>

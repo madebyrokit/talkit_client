@@ -42,7 +42,7 @@ function Resister() {
     if (!validateInputs()) return;
 
     axios
-      .post("http://localhost:8080/register", {
+      .post(`${process.env.REACT_APP_API_URL}/register`, {
         email,
         password,
         confirm_password,
